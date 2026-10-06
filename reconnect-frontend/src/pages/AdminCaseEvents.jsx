@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import AdminLayout from "../components/AdminLayout";
 import "./AdminCaseEvents.css";
 
-const API_BASE = API_BASE;
-
 function AdminCaseEvents() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);

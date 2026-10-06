@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import AdminLayout from "../components/AdminLayout";
 import "./AdminMissingPersons.css";
 
-const API_BASE = API_BASE;
-
 function AdminMissingPersons() {
   const [persons, setPersons] = useState([]);
   const [loading, setLoading] = useState(true);

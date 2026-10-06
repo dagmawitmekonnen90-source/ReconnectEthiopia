@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import AdminLayout from "../components/AdminLayout";
 import "./AdminUsers.css";
 
-const API_BASE = API_BASE;
-
 function AdminUsers() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
