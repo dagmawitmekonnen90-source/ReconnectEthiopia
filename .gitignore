@@ -1,0 +1,67 @@
+# ============================================================
+# ReConnect Ethiopia — Root .gitignore
+# ============================================================
+
+# ---- Python / Backend ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.env
+*.env
+!Backend/.env.example
+!reconnect-frontend/.env.example
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Flask / SQLAlchemy
+instance/
+.webassets-cache
+
+# Migrations generated SQLite (keep postgres migrations)
+*.db
+*.sqlite3
+
+# ---- Node / Frontend ----
+node_modules/
+reconnect-frontend/dist/
+reconnect-frontend/dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- Uploaded files (keep folder structure, not contents) ----
+Backend/app/static/uploads/missing_persons/*
+Backend/app/static/uploads/unidentified/*
+!Backend/app/static/uploads/missing_persons/.gitkeep
+!Backend/app/static/uploads/unidentified/.gitkeep
+
+# ---- Editor / OS ----
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ---- Logs ----
+logs/
+*.log
+
+# ---- Vercel ----
+.vercel/

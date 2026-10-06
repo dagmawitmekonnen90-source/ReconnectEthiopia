@@ -1,0 +1,1256 @@
+/* ============================================================
+   ADMIN SIGHTINGS — PROFESSIONAL CASE MANAGEMENT
+   ============================================================ */
+
+.admin-sightings-page {
+  min-height: 100vh;
+  background: #f8f7f4;
+  color: #17201f;
+  padding: 40px 5%;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.admin-sightings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.admin-sightings-eyebrow {
+  margin: 0 0 8px;
+  color: #d4a017;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.2px;
+}
+
+.admin-sightings-header h1 {
+  margin: 0;
+  color: #0b5a54;
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.admin-sightings-subtitle {
+  max-width: 650px;
+  margin: 9px 0 0;
+  color: #68716f;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.admin-sightings-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.admin-sightings-back-button,
+.admin-sightings-refresh-button {
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+.admin-sightings-back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d7d4cb;
+  background: white;
+  color: #0f766e;
+  text-decoration: none;
+}
+
+.admin-sightings-back-button:hover {
+  background: #eef6f4;
+  border-color: #b9d5d1;
+  transform: translateY(-1px);
+}
+
+.admin-sightings-refresh-button {
+  border: 1px solid #0f766e;
+  background: #0f766e;
+  color: white;
+}
+
+.admin-sightings-refresh-button:hover {
+  background: #0b5a54;
+  border-color: #0b5a54;
+  transform: translateY(-1px);
+}
+
+.admin-sightings-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+
+.admin-sightings-content {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   SUMMARY STATISTICS
+   ============================================================ */
+
+.admin-sightings-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-sightings-stat-card {
+  min-height: 105px;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 20px 22px;
+  background: white;
+  border: 1px solid #e5e2d9;
+  border-radius: 13px;
+  box-shadow: 0 4px 18px rgba(11, 90, 84, 0.045);
+  box-sizing: border-box;
+}
+
+.admin-sightings-stat-card:first-child {
+  border-left: 4px solid #0f766e;
+}
+
+.admin-sightings-stat-card:last-child {
+  border-left: 4px solid #d4a017;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: #e8f3f1;
+  color: #0f766e;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.admin-sightings-stat-card:last-child .stat-icon {
+  background: #f8edc9;
+  color: #8a6b00;
+}
+
+.stat-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #737b79;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.admin-sightings-stat-card strong {
+  display: block;
+  color: #0b5a54;
+  font-size: 29px;
+  line-height: 1;
+}
+
+/* ============================================================
+   MANAGEMENT PANEL
+   ============================================================ */
+
+.admin-sightings-panel {
+  background: white;
+  border: 1px solid #e5e2d9;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(11, 90, 84, 0.05);
+}
+
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
+
+.admin-sightings-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  padding: 24px;
+  border-bottom: 1px solid #eeeae1;
+  background: #fff;
+}
+
+.admin-sightings-toolbar h2 {
+  margin: 0;
+  color: #0b5a54;
+  font-size: 20px;
+  letter-spacing: -0.2px;
+}
+
+.admin-sightings-toolbar p {
+  margin: 6px 0 0;
+  color: #7b8381;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.admin-sightings-search {
+  position: relative;
+  width: 330px;
+  flex-shrink: 0;
+}
+
+.admin-sightings-search > span {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0f766e;
+  font-size: 21px;
+  pointer-events: none;
+}
+
+.admin-sightings-search input {
+  width: 100%;
+  height: 43px;
+  padding: 0 40px 0 41px;
+  box-sizing: border-box;
+  border: 1px solid #d8d5cc;
+  border-radius: 8px;
+  background: #fafbf9;
+  color: #17201f;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.admin-sightings-search input:focus {
+  background: white;
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.08);
+}
+
+.admin-sightings-search input::placeholder {
+  color: #9aa09e;
+}
+
+.clear-search {
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  width: 25px;
+  height: 25px;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 50%;
+  background: #e8e5dd;
+  color: #59615f;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.clear-search:hover {
+  background: #dcd8cf;
+  color: #0b5a54;
+}
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+
+.admin-sightings-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-sightings-table {
+  width: 100%;
+  min-width: 1120px;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.admin-sightings-table th {
+  padding: 15px 15px;
+  background: #0b5a54;
+  color: white;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.65px;
+  white-space: nowrap;
+}
+
+.admin-sightings-table td {
+  padding: 16px 15px;
+  border-bottom: 1px solid #eeeae1;
+  vertical-align: middle;
+  font-size: 13px;
+  color: #3f4947;
+}
+
+.admin-sightings-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.admin-sightings-table tbody tr:hover {
+  background: #fafbf9;
+}
+
+.admin-sightings-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ============================================================
+   SIGHTING ID
+   ============================================================ */
+
+.sighting-id {
+  display: inline-flex;
+  align-items: center;
+  min-width: 48px;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* ============================================================
+   MISSING PERSON / CASE
+   ============================================================ */
+
+.person-cell {
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.person-cell strong {
+  color: #17201f;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.person-cell span {
+  color: #8a918f;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   LOCATION
+   ============================================================ */
+
+.location-cell {
+  display: inline-block;
+  max-width: 190px;
+  color: #34413f;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* ============================================================
+   REPORTER
+   ============================================================ */
+
+.reporter-cell {
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reporter-cell strong {
+  color: #263331;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.reporter-cell span {
+  max-width: 190px;
+  color: #858d8b;
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   DESCRIPTION
+   ============================================================ */
+
+.description-cell {
+  width: 230px;
+  max-width: 230px;
+  color: #606967;
+  font-size: 12px;
+  line-height: 1.5;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+ -webkit-line-clamp: 2;
+line-clamp: 2;
+  overflow: hidden;
+}
+
+/* ============================================================
+   ACTIONS
+   ============================================================ */
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.action-buttons button {
+  min-width: 62px;
+  border: none;
+  border-radius: 7px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.view-button {
+  background: #0f766e;
+  color: white;
+}
+
+.view-button:hover {
+  background: #0b5a54;
+  transform: translateY(-1px);
+}
+
+.delete-button {
+  background: #eeeae1;
+  color: #505856;
+}
+
+.delete-button:hover {
+  background: #ddd8cd;
+  color: #343b39;
+  transform: translateY(-1px);
+}
+
+.action-buttons button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ============================================================
+   LOADING / ERROR / EMPTY STATES
+   ============================================================ */
+
+.admin-sightings-state {
+  min-height: 330px;
+  padding: 55px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.admin-sightings-state h3 {
+  margin: 4px 0 7px;
+  color: #0b5a54;
+  font-size: 18px;
+}
+
+.admin-sightings-state p {
+  max-width: 500px;
+  margin: 0;
+  color: #737b79;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.loading-spinner {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 17px;
+  border: 4px solid #dce8e6;
+  border-top-color: #0f766e;
+  border-radius: 50%;
+  animation: sightingsSpinner 0.8s linear infinite;
+}
+
+@keyframes sightingsSpinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-state {
+  background: #fffaf0;
+}
+
+.state-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f8edc9;
+  color: #806200;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.retry-button {
+  margin-top: 17px;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 17px;
+  background: #0f766e;
+  color: white;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.retry-button:hover {
+  background: #0b5a54;
+}
+
+.empty-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e8f3f1;
+  color: #0f766e;
+  font-size: 27px;
+}
+
+.empty-icon + h3 {
+  margin-top: 0;
+}
+
+/* ============================================================
+   MODAL OVERLAY
+   ============================================================ */
+
+.sighting-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+  box-sizing: border-box;
+
+  background: rgba(23, 32, 31, 0.68);
+  backdrop-filter: blur(3px);
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+.sighting-modal {
+  width: 100%;
+  max-width: 780px;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  background: #f8f7f4;
+  border-radius: 17px;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.28),
+    0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================================
+   MODAL HEADER
+   ============================================================ */
+
+.sighting-modal-header {
+  padding: 25px 30px;
+  background: #0b5a54;
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.sighting-modal-header p {
+  margin: 0 0 7px;
+  color: #d4a017;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+}
+
+.sighting-modal-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.modal-close {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.11);
+  color: white;
+
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.21);
+}
+
+/* ============================================================
+   MODAL BODY
+   ============================================================ */
+
+.sighting-modal-body {
+  padding: 27px 30px;
+}
+
+/* ============================================================
+   HIGHLIGHTED CASE
+   ============================================================ */
+
+.detail-highlight {
+  position: relative;
+
+  margin-bottom: 20px;
+  padding: 18px 20px;
+
+  background: white;
+  border: 1px solid #e5e2d9;
+  border-left: 4px solid #d4a017;
+  border-radius: 10px;
+
+  box-shadow: 0 3px 12px rgba(11, 90, 84, 0.035);
+}
+
+.detail-highlight span {
+  display: block;
+  margin-bottom: 6px;
+
+  color: #858d8b;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.detail-highlight strong {
+  display: block;
+  color: #0b5a54;
+  font-size: 18px;
+}
+
+.detail-highlight small {
+  display: block;
+  margin-top: 5px;
+  color: #8a918f;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   DETAIL GRID
+   ============================================================ */
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.detail-item {
+  min-width: 0;
+  padding: 15px 16px;
+
+  background: white;
+  border: 1px solid #e5e2d9;
+  border-radius: 9px;
+}
+
+.detail-item span {
+  display: block;
+  margin-bottom: 7px;
+
+  color: #858d8b;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.detail-item strong {
+  display: block;
+  color: #263331;
+  font-size: 13px;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+/* ============================================================
+   DESCRIPTION
+   ============================================================ */
+
+.description-section {
+  margin-top: 16px;
+  padding: 19px;
+
+  background: white;
+  border: 1px solid #e5e2d9;
+  border-radius: 10px;
+}
+
+.description-section > span {
+  display: block;
+  margin-bottom: 9px;
+
+  color: #858d8b;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.description-section p {
+  margin: 0;
+  color: #4f5957;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+/* ============================================================
+   MODAL FOOTER
+   ============================================================ */
+
+.sighting-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+
+  padding: 18px 30px;
+
+  border-top: 1px solid #e5e2d9;
+  background: #f3f1eb;
+}
+
+.modal-secondary-button,
+.modal-delete-button {
+  min-height: 40px;
+  padding: 0 17px;
+
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.modal-secondary-button {
+  border: 1px solid #d7d4cb;
+  background: white;
+  color: #505856;
+}
+
+.modal-secondary-button:hover {
+  background: #eeeae1;
+}
+
+.modal-delete-button {
+  border: 1px solid #d4cec1;
+  background: #eeeae1;
+  color: #505856;
+}
+
+.modal-delete-button:hover {
+  background: #ddd8cd;
+  color: #343b39;
+}
+
+.modal-secondary-button:disabled,
+.modal-delete-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+.sighting-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sighting-modal::-webkit-scrollbar-track {
+  background: #eeeae1;
+}
+
+.sighting-modal::-webkit-scrollbar-thumb {
+  background: #b7c7c4;
+  border-radius: 10px;
+}
+
+.sighting-modal::-webkit-scrollbar-thumb:hover {
+  background: #8fa9a5;
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+
+@media (max-width: 1000px) {
+  .admin-sightings-page {
+    padding: 30px 4%;
+  }
+
+  .admin-sightings-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-sightings-header-actions {
+    width: 100%;
+  }
+
+  .admin-sightings-back-button,
+  .admin-sightings-refresh-button {
+    flex: 1;
+  }
+
+  .admin-sightings-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-sightings-search {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+  .admin-sightings-page {
+    padding: 22px 4%;
+  }
+
+  .admin-sightings-header h1 {
+    font-size: 30px;
+  }
+
+  .admin-sightings-subtitle {
+    font-size: 13px;
+  }
+
+  .admin-sightings-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sightings-toolbar {
+    padding: 20px;
+  }
+
+  .admin-sightings-table {
+    min-width: 1000px;
+  }
+
+  .sighting-modal-overlay {
+    padding: 10px;
+  }
+
+  .sighting-modal-header,
+  .sighting-modal-body {
+    padding: 20px;
+  }
+
+  .sighting-modal-footer {
+    padding: 15px 20px;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .admin-sightings-header-actions {
+    flex-direction: column;
+  }
+
+  .admin-sightings-back-button,
+  .admin-sightings-refresh-button {
+    width: 100%;
+  }
+
+  .admin-sightings-stat-card {
+    min-height: 95px;
+    padding: 17px;
+  }
+
+  .stat-icon {
+    width: 43px;
+    height: 43px;
+  }
+
+  .admin-sightings-toolbar h2 {
+    font-size: 18px;
+  }
+
+  .sighting-modal-header {
+    padding: 18px;
+  }
+
+  .sighting-modal-body {
+    padding: 18px;
+  }
+
+  .sighting-modal-footer {
+    padding: 14px 18px;
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .modal-secondary-button,
+  .modal-delete-button {
+    width: 100%;
+  }
+
+  .sighting-modal-header h2 {
+    font-size: 20px;
+  }
+}
+
+/* ============================================================
+   DARK MODE OVERRIDES
+   ============================================================ */
+
+[data-theme="dark"] .admin-sightings-page {
+  background: #151e1d;
+  color: #d4cfc5;
+}
+
+[data-theme="dark"] .admin-sightings-header h1 {
+  color: #4db8af;
+}
+
+[data-theme="dark"] .admin-sightings-subtitle {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .admin-sightings-back-button {
+  background: #1c2827;
+  border-color: #2a3836;
+  color: #4db8af;
+}
+
+[data-theme="dark"] .admin-sightings-back-button:hover {
+  background: #253530;
+  border-color: #4db8af;
+}
+
+[data-theme="dark"] .admin-sightings-stat-card {
+  background: #1c2827;
+  border-color: #2a3836;
+}
+
+[data-theme="dark"] .admin-sightings-stat-card strong {
+  color: #4db8af;
+}
+
+[data-theme="dark"] .stat-icon {
+  background: #1e3330;
+  color: #4db8af;
+}
+
+[data-theme="dark"] .admin-sightings-stat-card:last-child .stat-icon {
+  background: #2e2415;
+  color: #d8bc7c;
+}
+
+[data-theme="dark"] .admin-sightings-panel {
+  background: #1c2827;
+  border-color: #2a3836;
+}
+
+[data-theme="dark"] .admin-sightings-toolbar {
+  background: #1c2827;
+  border-bottom-color: #2a3836;
+}
+
+[data-theme="dark"] .admin-sightings-toolbar h2 {
+  color: #e8e0d0;
+}
+
+[data-theme="dark"] .admin-sightings-toolbar p {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .admin-sightings-search input {
+  background: #151e1d;
+  border-color: #2a3836;
+  color: #d4cfc5;
+}
+
+[data-theme="dark"] .admin-sightings-search input:focus {
+  background: #1c2827;
+}
+
+[data-theme="dark"] .admin-sightings-search input::placeholder {
+  color: #6a8a85;
+}
+
+[data-theme="dark"] .admin-sightings-table th {
+  background: #0d2422;
+  color: #d4cfc5;
+}
+
+[data-theme="dark"] .admin-sightings-table td {
+  border-bottom-color: #2a3836;
+  color: #c8d0ce;
+}
+
+[data-theme="dark"] .admin-sightings-table tbody tr:hover {
+  background: #1e2e2c;
+}
+
+[data-theme="dark"] .person-cell strong {
+  color: #e8e0d0;
+}
+
+[data-theme="dark"] .person-cell span {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .location-cell {
+  color: #c8d0ce;
+}
+
+[data-theme="dark"] .reporter-cell strong {
+  color: #e8e0d0;
+}
+
+[data-theme="dark"] .reporter-cell span {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .description-cell {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .admin-sightings-state {
+  background: transparent;
+}
+
+[data-theme="dark"] .admin-sightings-state h3 {
+  color: #4db8af;
+}
+
+[data-theme="dark"] .admin-sightings-state p {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .error-state {
+  background: #2e1a18;
+}
+
+[data-theme="dark"] .empty-icon {
+  background: #1a3530;
+  color: #4db8af;
+}
+
+[data-theme="dark"] .state-icon {
+  background: #2e2415;
+  color: #d8bc7c;
+}
+
+[data-theme="dark"] .sighting-modal-overlay {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+[data-theme="dark"] .sighting-modal {
+  background: #1c2827;
+}
+
+[data-theme="dark"] .sighting-modal-body {
+  background: #1c2827;
+}
+
+[data-theme="dark"] .detail-highlight {
+  background: #151e1d;
+  border-color: #2a3836;
+}
+
+[data-theme="dark"] .detail-highlight strong {
+  color: #4db8af;
+}
+
+[data-theme="dark"] .detail-highlight small {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .detail-item {
+  background: #151e1d;
+  border-color: #2a3836;
+}
+
+[data-theme="dark"] .detail-item span {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .detail-item strong {
+  color: #e8e0d0;
+}
+
+[data-theme="dark"] .description-section {
+  background: #151e1d;
+  border-color: #2a3836;
+}
+
+[data-theme="dark"] .description-section p {
+  color: #c8d0ce;
+}
+
+[data-theme="dark"] .sighting-modal-footer {
+  background: #151e1d;
+  border-top-color: #2a3836;
+}
+
+[data-theme="dark"] .modal-secondary-button {
+  background: #1c2827;
+  border-color: #2a3836;
+  color: #d4cfc5;
+}
+
+[data-theme="dark"] .modal-secondary-button:hover {
+  background: #253530;
+}
+
+/* ============================================================
+   ADMIN SHELL CONTEXT — force dark modals
+   ============================================================ */
+
+.admin-shell .sighting-modal-overlay {
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.admin-shell .sighting-modal {
+  background: #1e2e2c;
+  border: 1px solid #2a3836;
+}
+
+.admin-shell .sighting-modal-body {
+  background: #1e2e2c;
+}
+
+.admin-shell .detail-highlight {
+  background: #152220;
+  border-color: #2a3836;
+}
+
+.admin-shell .detail-highlight strong {
+  color: #4db8af;
+}
+
+.admin-shell .detail-item {
+  background: #152220;
+  border-color: #2a3836;
+}
+
+.admin-shell .detail-item span { color: #6a8a85; }
+.admin-shell .detail-item strong { color: #e8e0d0; }
+
+.admin-shell .description-section {
+  background: #152220;
+  border-color: #2a3836;
+}
+
+.admin-shell .description-section p { color: #c8d0ce; }
+
+.admin-shell .sighting-modal-footer {
+  background: #152220;
+  border-top-color: #2a3836;
+}
+
+.admin-shell .modal-secondary-button {
+  background: #253530;
+  border-color: #2a3836;
+  color: #d4cfc5;
+}

@@ -1,0 +1,72 @@
+/* =========================================================
+   GLOBAL CONTROLS — Language + Theme toggles
+   Fixed bottom-right on every page
+   ========================================================= */
+
+.global-controls {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.global-controls-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--gc-border);
+  border-radius: 50%;
+  background: var(--gc-bg);
+  color: var(--gc-text);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px var(--gc-shadow);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.global-controls-btn:hover {
+  background: var(--gc-bg-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--gc-shadow);
+}
+
+.global-controls-btn:active {
+  transform: translateY(0);
+}
+
+.global-controls-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Mobile — same size, already compact */
+@media (max-width: 480px) {
+  .global-controls-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+:root {
+  --gc-bg: rgba(255, 255, 255, 0.92);
+  --gc-bg-hover: rgba(255, 255, 255, 1);
+  --gc-border: rgba(8, 47, 44, 0.14);
+  --gc-text: #082f2c;
+  --gc-shadow: rgba(8, 47, 44, 0.15);
+}
+
+/* Dark mode tokens */
+[data-theme="dark"] {
+  --gc-bg: rgba(30, 45, 42, 0.92);
+  --gc-bg-hover: rgba(40, 58, 54, 1);
+  --gc-border: rgba(198, 161, 91, 0.25);
+  --gc-text: #e8e0d0;
+  --gc-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Light mode tokens */

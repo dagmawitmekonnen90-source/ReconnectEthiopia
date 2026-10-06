@@ -1,0 +1,214 @@
+.report-missing-page {
+  min-height: 100vh;
+  background: #f8f7f4;
+  color: #202524;
+}
+
+.report-missing-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+.report-missing-form {
+  background: white;
+  padding: 40px;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+.form-section {
+  margin-bottom: 35px;
+}
+
+.form-section h2 {
+  color: #0b5a54;
+  font-size: 20px;
+  margin: 0 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e2da;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d7d4cc;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  background: #fff;
+  color: #202524;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group small {
+  color: #777;
+  font-size: 12px;
+}
+
+.report-success {
+  background: #e4f3ed;
+  color: #0b5a54;
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.report-error {
+  background: #f8e8e5;
+  color: #8b3a32;
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+.cancel-button,
+.submit-report-button {
+  border: none;
+  border-radius: 8px;
+  padding: 13px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background: #e7e5df;
+  color: #333;
+}
+
+.submit-report-button {
+  background: #0f766e;
+  color: white;
+}
+
+.submit-report-button:hover {
+  background: #0b5a54;
+}
+
+.submit-report-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+  .report-missing-page {
+    padding: 20px 10px;
+  }
+
+  .report-missing-header {
+    padding: 28px 22px;
+  }
+
+  .report-missing-form {
+    padding: 25px 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .cancel-button,
+  .submit-report-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   DARK MODE OVERRIDES
+   ========================================================= */
+
+[data-theme="dark"] .report-missing-page {
+  background: #151e1d;
+  color: #d4cfc5;
+}
+
+[data-theme="dark"] .report-missing-form {
+  background: #1c2827;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .form-section h2 {
+  color: #4db8af;
+  border-bottom-color: #2a3836;
+}
+
+[data-theme="dark"] .form-group label {
+  color: #c8d4d2;
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+  background: #151e1d;
+  border-color: #2a3836;
+  color: #d4cfc5;
+}
+
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder {
+  color: #6a8a85;
+}
+
+[data-theme="dark"] .form-group small {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .report-success {
+  background: #1a3530;
+  color: #6ecf92;
+}
+
+[data-theme="dark"] .report-error {
+  background: #2e1a18;
+  color: #e8a09a;
+}
+
+[data-theme="dark"] .cancel-button {
+  background: #2a3836;
+  color: #d4cfc5;
+}

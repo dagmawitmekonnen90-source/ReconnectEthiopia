@@ -1,0 +1,227 @@
+.report-sighting-page {
+  min-height: 100vh;
+  background: #f8f7f4;
+  color: #202524;
+}
+
+.report-sighting-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+.report-sighting-form {
+  background: white;
+  padding: 40px;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+.form-section {
+  margin-bottom: 35px;
+}
+
+.form-section h2 {
+  color: #0b5a54;
+  font-size: 20px;
+  margin: 0 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e2da;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d7d4cc;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  background: white;
+  color: #202524;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.loading-text {
+  color: #666;
+  margin: 0;
+}
+
+.no-persons {
+  background: #f8f7f4;
+  border: 1px solid #e5e2da;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.no-persons p {
+  margin: 0 0 15px;
+}
+
+.no-persons button {
+  background: #0f766e;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sighting-success {
+  background: #e4f3ed;
+  color: #0b5a54;
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.sighting-error {
+  background: #f8e8e5;
+  color: #8b3a32;
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.sighting-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+.sighting-cancel-button,
+.sighting-submit-button {
+  border: none;
+  border-radius: 8px;
+  padding: 13px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sighting-cancel-button {
+  background: #e7e5df;
+  color: #333;
+}
+
+.sighting-submit-button {
+  background: #0f766e;
+  color: white;
+}
+
+.sighting-submit-button:hover {
+  background: #0b5a54;
+}
+
+.sighting-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+  .report-sighting-page {
+    padding: 20px 10px;
+  }
+
+  .report-sighting-header {
+    padding: 28px 22px;
+  }
+
+  .report-sighting-form {
+    padding: 25px 20px;
+  }
+
+  .sighting-actions {
+    flex-direction: column;
+  }
+
+  .sighting-cancel-button,
+  .sighting-submit-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   DARK MODE OVERRIDES
+   ========================================================= */
+
+[data-theme="dark"] .report-sighting-page {
+  background: #151e1d;
+  color: #d4cfc5;
+}
+
+[data-theme="dark"] .report-sighting-form {
+  background: #1c2827;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .form-section h2 {
+  color: #4db8af;
+  border-bottom-color: #2a3836;
+}
+
+[data-theme="dark"] .form-group label {
+  color: #c8d4d2;
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+  background: #151e1d;
+  border-color: #2a3836;
+  color: #d4cfc5;
+}
+
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder {
+  color: #6a8a85;
+}
+
+[data-theme="dark"] .no-persons {
+  background: #151e1d;
+  border-color: #2a3836;
+}
+
+[data-theme="dark"] .sighting-success {
+  background: #1a3530;
+  color: #6ecf92;
+}
+
+[data-theme="dark"] .sighting-error {
+  background: #2e1a18;
+  color: #e8a09a;
+}
+
+[data-theme="dark"] .sighting-cancel-button {
+  background: #2a3836;
+  color: #d4cfc5;
+}

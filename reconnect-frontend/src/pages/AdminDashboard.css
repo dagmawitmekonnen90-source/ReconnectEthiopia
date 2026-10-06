@@ -1,0 +1,378 @@
+.admin-page {
+  min-height: 100vh;
+  background: #f8f7f4;
+  color: #17201f;
+  padding: 40px 6%;
+}
+
+/* HEADER */
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.admin-label {
+  margin: 0 0 8px;
+  color: #d4a017;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.admin-header h1 {
+  margin: 0;
+  color: #0b5a54;
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.admin-subtitle {
+  margin: 10px 0 0;
+  color: #68716f;
+  font-size: 15px;
+}
+
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-link {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #0f766e;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.dashboard-link:hover {
+  background: #0b5a54;
+}
+
+/* STATISTICS */
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  margin-bottom: 50px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid #e5e2d9;
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 15px rgba(11, 90, 84, 0.05);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #e8f3f1;
+  color: #0f766e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.stat-card span {
+  display: block;
+  color: #707876;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.stat-card strong {
+  display: block;
+  color: #0b5a54;
+  font-size: 27px;
+  font-weight: 800;
+}
+
+/* MANAGEMENT */
+
+.admin-section {
+  margin-bottom: 40px;
+}
+
+.section-heading {
+  margin-bottom: 20px;
+}
+
+.section-heading p {
+  margin: 0 0 5px;
+  color: #d4a017;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #17201f;
+  font-size: 26px;
+}
+
+.management-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.management-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 25px;
+  background: white;
+  border: 1px solid #e5e2d9;
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: 0.2s ease;
+}
+
+.management-card:hover {
+  transform: translateY(-3px);
+  border-color: #0f766e;
+  box-shadow: 0 8px 25px rgba(11, 90, 84, 0.1);
+}
+
+.management-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 12px;
+  background: #0b5a54;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.management-card h3 {
+  margin: 0 0 6px;
+  color: #0b5a54;
+  font-size: 18px;
+}
+
+.management-card p {
+  margin: 0;
+  color: #707876;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.arrow {
+  margin-left: auto;
+  color: #d4a017;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+/* ADMIN INFO */
+
+.admin-info {
+  background: #0b5a54;
+  color: white;
+  border-radius: 14px;
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.info-label {
+  color: #d4a017;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.admin-info h3 {
+  margin: 6px 0;
+  font-size: 19px;
+}
+
+.admin-info p {
+  margin: 0;
+  color: #d6e4e2;
+  font-size: 14px;
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+.system-status {
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: #d4a017;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* LOADING / ERROR */
+
+.admin-loading,
+.admin-error {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.admin-loading h2,
+.admin-error h2 {
+  color: #0b5a54;
+}
+
+.admin-loading p,
+.admin-error p {
+  color: #68716f;
+}
+
+.admin-error button {
+  margin-top: 15px;
+  padding: 11px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #0f766e;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .admin-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .admin-page {
+    padding: 30px 5%;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .management-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .admin-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-header h1 {
+    font-size: 30px;
+  }
+}
+
+/* =========================================================
+   DARK MODE OVERRIDES
+   ========================================================= */
+
+[data-theme="dark"] .admin-page {
+  background: #151e1d;
+  color: #d4cfc5;
+}
+
+[data-theme="dark"] .admin-header h1 {
+  color: #4db8af;
+}
+
+[data-theme="dark"] .admin-subtitle {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .stat-card {
+  background: #1c2827;
+  border-color: #2a3836;
+}
+
+[data-theme="dark"] .stat-card span {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .stat-card strong {
+  color: #4db8af;
+}
+
+[data-theme="dark"] .stat-icon {
+  background: #1e3330;
+  color: #4db8af;
+}
+
+[data-theme="dark"] .section-heading h2 {
+  color: #e8e0d0;
+}
+
+[data-theme="dark"] .management-card {
+  background: #1c2827;
+  border-color: #2a3836;
+  color: #d4cfc5;
+}
+
+[data-theme="dark"] .management-card:hover {
+  border-color: #4db8af;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .management-card h3 {
+  color: #4db8af;
+}
+
+[data-theme="dark"] .management-card p {
+  color: #8fa8a3;
+}
+
+[data-theme="dark"] .admin-loading h2,
+[data-theme="dark"] .admin-error h2 {
+  color: #4db8af;
+}
+
+[data-theme="dark"] .admin-loading p,
+[data-theme="dark"] .admin-error p {
+  color: #8fa8a3;
+}

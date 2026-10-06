@@ -1,0 +1,71 @@
+/* =========================================================
+   PAGE HEADER — shared across MissingPersons, MissingPersonDetails,
+   ReportMissing, ReportSighting
+   ========================================================= */
+
+.page-header {
+  background: linear-gradient(135deg, #082f2c 0%, #0b5a54 100%);
+  color: #ffffff;
+  padding: 48px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.page-header__content {
+  flex: 1;
+  min-width: 200px;
+}
+
+.page-header__eyebrow {
+  margin: 0 0 10px;
+  color: #d4a017;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.page-header__title {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+}
+
+.page-header__subtitle {
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 660px;
+}
+
+.page-header__action {
+  flex-shrink: 0;
+}
+
+/* Dark mode — header is already dark, looks fine either way */
+[data-theme="dark"] .page-header {
+  background: linear-gradient(135deg, #0a1e1c 0%, #0d2e2b 100%);
+  border-bottom: 1px solid rgba(77, 184, 175, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .page-header {
+    padding: 36px 5%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .page-header__action {
+    width: 100%;
+  }
+}
