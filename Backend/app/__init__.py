@@ -40,9 +40,7 @@ def create_app():
                 "origins": [
                     "http://localhost:5173",
                     "http://127.0.0.1:5173",
-                    "https://reconnect-ethiopia.vercel.app",
-                    # Add your Railway backend URL here if needed for testing
-                    # Vercel auto-assigns *.vercel.app domains to your frontend
+                    "https://reconnect-ethiopia-1dza-ashen.vercel.app",
                 ],
                 "supports_credentials": True,
             }
