@@ -3,9 +3,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import AdminLayout from "../components/AdminLayout";
-import "./AdminSightings.css";
-
-const API_BASE = API_BASE;
 
 function AdminSightings() {
   const [sightings, setSightings] = useState([]);
