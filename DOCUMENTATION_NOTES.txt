@@ -1,0 +1,569 @@
+============================================================
+  RECONNECT ETHIOPIA — PROJECT DOCUMENTATION NOTES
+  For use when writing the full project documentation
+============================================================
+
+------------------------------------------------------------
+1. PROJECT OVERVIEW
+------------------------------------------------------------
+
+Project Name:     ReConnect Ethiopia
+Type:             Web Application (Full-Stack)
+Purpose:          A centralized missing-persons platform for Ethiopia.
+                  It connects families, communities, hospitals, and law
+                  enforcement through shared information about missing
+                  persons, sightings, and unidentified individuals.
+
+Problem Solved:   In Ethiopia, missing person information is scattered
+                  across different channels (social media, police
+                  stations, hospitals). There is no single place where
+                  families can report, search, and receive updates.
+                  ReConnect Ethiopia solves this by centralizing all
+                  activity in one platform with automatic notifications.
+
+Target Users:
+  - Families of missing persons (reporters)
+  - General public (sighting reporters, case browsers)
+  - Hospitals and police stations (institutional users)
+  - Platform administrators
+
+Live URL (Frontend):  https://reconnect-ethiopia-1dza-ashen.vercel.app
+Backend API URL:      https://reconnectethiopia-production.up.railway.app
+
+
+------------------------------------------------------------
+2. TECH STACK
+------------------------------------------------------------
+
+FRONTEND:
+  - React 19 (component-based UI)
+  - Vite 8 (build tool and dev server)
+  - React Router DOM v7 (client-side routing)
+  - react-i18next + i18next (Amharic / English translation)
+  - CSS custom properties (design token system for theming)
+  - No UI library — all components hand-built
+
+BACKEND:
+  - Python 3.11+
+  - Flask 3.1 (web framework)
+  - Flask-SQLAlchemy (ORM)
+  - Flask-Migrate + Alembic (database migrations)
+  - Flask-JWT-Extended (JWT authentication)
+  - Flask-Bcrypt (password hashing)
+  - Flask-CORS (cross-origin requests)
+  - Pillow (image handling)
+  - python-dotenv (environment variables)
+
+DATABASE:
+  - PostgreSQL (production: Neon serverless Postgres)
+  - psycopg v3 driver
+
+DEPLOYMENT:
+  - Frontend: Vercel (Vite SPA with catch-all rewrites)
+  - Backend:  Railway (Python/Flask server)
+  - Database: Neon (serverless PostgreSQL, free tier)
+  - Code:     GitHub (version control)
+
+INTERNATIONALISATION:
+  - English (en) — default language
+  - Amharic (አማርኛ) — full translation
+  - Language preference persisted to localStorage
+  - Language toggle button (fixed, bottom-right on all pages)
+
+THEMING:
+  - Light mode (default) and Dark mode
+  - Toggle persisted to localStorage
+  - Implemented via CSS [data-theme="dark"] on <html>
+  - Theme toggle button (fixed, bottom-right on all pages)
+
+
+------------------------------------------------------------
+3. DATABASE SCHEMA
+------------------------------------------------------------
+
+TABLE: users
+  id            INTEGER PRIMARY KEY
+  full_name     VARCHAR(150) NOT NULL
+  email         VARCHAR(150) UNIQUE NOT NULL
+  password_hash VARCHAR(255) NOT NULL
+  role          VARCHAR(50)  DEFAULT 'user'
+                  Values: 'user', 'admin', 'institution'
+  is_banned     BOOLEAN      DEFAULT FALSE
+  ban_reason    VARCHAR(500) NULLABLE
+  created_at    DATETIME     DEFAULT now()
+
+TABLE: missing_persons
+  id                  INTEGER PRIMARY KEY
+  full_name           VARCHAR(150) NOT NULL
+  age                 INTEGER NULLABLE
+  gender              VARCHAR(50)  NULLABLE
+  description         TEXT NULLABLE
+  last_seen_location  VARCHAR(255) NULLABLE
+  last_seen_date      DATE NULLABLE
+  status              VARCHAR(50)  DEFAULT 'active'
+                        Values: 'active', 'under_investigation',
+                                'found', 'closed'
+  reported_by         INTEGER FK -> users.id
+  photo_url           VARCHAR(500) NULLABLE
+  created_at          DATETIME DEFAULT now()
+
+TABLE: sightings
+  id                INTEGER PRIMARY KEY
+  missing_person_id INTEGER FK -> missing_persons.id
+  description       TEXT NULLABLE
+  location          VARCHAR(255) NOT NULL
+  sighting_date     DATE NULLABLE
+  reported_by       INTEGER FK -> users.id
+  created_at        DATETIME DEFAULT now()
+
+TABLE: case_events
+  id                INTEGER PRIMARY KEY
+  missing_person_id INTEGER FK -> missing_persons.id
+  event_type        VARCHAR(50) NOT NULL
+                      Values: 'report_submitted', 'sighting_received',
+                              'status_updated', 'investigation_update',
+                              'reunited'
+  description       TEXT NOT NULL
+  created_by        INTEGER FK -> users.id NULLABLE
+  created_at        DATETIME DEFAULT now()
+
+TABLE: notifications
+  id                    INTEGER PRIMARY KEY
+  user_id               INTEGER FK -> users.id
+  notification_type     VARCHAR(50)
+                          Values: 'sighting_reported',
+                                  'institutional_match'
+  title                 VARCHAR(255) NOT NULL
+  message               TEXT NOT NULL
+  missing_person_id     INTEGER FK -> missing_persons.id NULLABLE
+  sighting_id           INTEGER FK -> sightings.id NULLABLE
+  unidentified_record_id INTEGER NULLABLE
+  is_read               BOOLEAN DEFAULT FALSE
+  created_at            DATETIME DEFAULT now()
+
+TABLE: institutions
+  id              INTEGER PRIMARY KEY
+  user_id         INTEGER FK -> users.id UNIQUE
+  facility_name   VARCHAR(255) NOT NULL
+  facility_type   VARCHAR(50)  NOT NULL  ('hospital' | 'police')
+  region          VARCHAR(150) NOT NULL
+  city            VARCHAR(150) NOT NULL
+  address         VARCHAR(400) NULLABLE
+  contact_phone   VARCHAR(50)  NULLABLE
+  status          VARCHAR(30)  DEFAULT 'pending'
+                    Values: 'pending', 'approved', 'rejected'
+  created_at      DATETIME DEFAULT now()
+
+TABLE: unidentified_records
+  id                      INTEGER PRIMARY KEY
+  institution_id          INTEGER FK -> institutions.id
+  estimated_age_min       INTEGER NULLABLE
+  estimated_age_max       INTEGER NULLABLE
+  gender                  VARCHAR(20) DEFAULT 'unknown'
+  physical_description    TEXT NULLABLE
+  found_location          VARCHAR(255) NOT NULL
+  found_date              DATE NOT NULL
+  condition               VARCHAR(50) DEFAULT 'unknown'
+                            Values: 'conscious', 'unconscious',
+                                    'stable', 'critical', 'deceased',
+                                    'in_custody', 'unknown'
+  notes                   TEXT NULLABLE
+  photo_url               VARCHAR(500) NULLABLE
+  status                  VARCHAR(30) DEFAULT 'open'
+                            Values: 'open', 'identified', 'closed'
+  matched_missing_person_id INTEGER FK -> missing_persons.id NULLABLE
+  created_at              DATETIME DEFAULT now()
+  updated_at              DATETIME DEFAULT now()
+
+TABLE: alembic_version
+  version_num VARCHAR(32) PRIMARY KEY
+  (Used internally by Flask-Migrate to track migration state)
+
+
+------------------------------------------------------------
+4. API ENDPOINTS
+------------------------------------------------------------
+
+AUTH  (/api/auth/*)
+  POST   /api/auth/register        Register new user
+  POST   /api/auth/login           Login, returns JWT token
+  GET    /api/auth/me              Get current user profile (JWT)
+
+MISSING PERSONS  (/api/missing-persons/*)
+  GET    /api/missing-persons                  List all (public)
+  POST   /api/missing-persons                  Create report (JWT)
+  GET    /api/missing-persons/:id              Get one (public)
+  PUT    /api/missing-persons/:id              Update own report (JWT)
+  DELETE /api/missing-persons/:id              Delete own report (JWT)
+  GET    /api/missing-persons/:id/matches      Smart match (public)
+  GET    /api/missing-persons/photos/:filename Serve photo (public)
+  GET    /api/missing-persons/mine             My reports (JWT)
+
+SIGHTINGS  (/api/sightings/*)
+  GET    /api/sightings                   List all (public)
+  POST   /api/sightings                   Submit sighting (JWT)
+                                          → auto-notifies reporter
+  GET    /api/sightings/:id               Get one
+  PUT    /api/sightings/:id               Update own (JWT)
+  DELETE /api/sightings/:id               Delete own (JWT)
+  GET    /api/sightings/mine              My sightings (JWT)
+
+CASE EVENTS  (/api/case-events/*)
+  GET    /api/case-events/my              My case events (JWT)
+  GET    /api/case-events/admin/all       All events (Admin)
+  DELETE /api/case-events/admin/:id       Delete event (Admin)
+
+DASHBOARD
+  GET    /api/dashboard/my-reports        Summary for logged-in user
+
+NOTIFICATIONS  (/api/notifications/*)
+  GET    /api/notifications               Get my notifications (JWT)
+                                          ?unread_only=true filter
+  POST   /api/notifications/:id/read      Mark one read (JWT)
+  POST   /api/notifications/read-all      Mark all read (JWT)
+  DELETE /api/notifications/:id           Delete notification (JWT)
+
+INSTITUTIONS  (/api/institutions/*)
+  POST   /api/institutions/register        Apply for institution (JWT)
+  GET    /api/institutions/me              My institution profile (JWT)
+  POST   /api/institutions/records         Submit unidentified record (Institution)
+                                           → runs matching engine
+                                           → auto-notifies matched families
+  GET    /api/institutions/records         My institution's records (Institution)
+  GET    /api/institutions/records/:id     Get one record (JWT)
+  PUT    /api/institutions/records/:id     Update record (Institution)
+  GET    /api/institutions/photos/:file    Serve photo (public)
+  GET    /api/institutions/admin/all       All institutions (Admin)
+  PUT    /api/institutions/admin/:id/status Approve/reject (Admin)
+  GET    /api/institutions/admin/records   All records (Admin)
+
+ADMIN  (/api/admin/*)
+  GET    /api/admin/dashboard              Platform statistics
+  GET    /api/admin/missing-persons        All reports
+  GET    /api/admin/missing-persons/:id    One report
+  PUT    /api/admin/missing-persons/:id    Update report
+  DELETE /api/admin/missing-persons/:id    Delete report
+  GET    /api/admin/sightings              All sightings
+  DELETE /api/admin/sightings/:id          Delete sighting
+  GET    /api/admin/users                  All users
+  GET    /api/admin/users/:id              One user
+  PUT    /api/admin/users/:id              Update user (name/email/role)
+  DELETE /api/admin/users/:id              Delete user
+  POST   /api/admin/users/:id/ban          Ban user
+  POST   /api/admin/users/:id/unban        Unban user
+  GET    /api/admin/users/stats            Account statistics
+
+
+------------------------------------------------------------
+5. USER ROLES & PERMISSIONS
+------------------------------------------------------------
+
+GUEST (not logged in):
+  - Browse all missing persons
+  - View individual case details and sightings
+
+REGULAR USER (role: 'user'):
+  - Everything guests can do
+  - Report a missing person (with photo)
+  - Report a sighting
+  - View personal dashboard with stats
+  - Receive notifications (sightings on own reports, institution matches)
+  - Apply to register as an institution
+
+INSTITUTION USER (role: 'institution', institution.status: 'approved'):
+  - Login → redirected to Institution Dashboard (not user dashboard)
+  - Submit unidentified individual records (no personal info)
+  - View and manage their own submitted records
+  - NOT able to report missing persons or sightings
+
+ADMINISTRATOR (role: 'admin'):
+  - Access dedicated Admin Panel (completely separate UI shell)
+  - Manage all missing person reports
+  - Manage all sightings
+  - Manage all users (ban/unban, role changes)
+  - Approve/reject institution registrations
+  - View all unidentified records
+  - View all case events and activity history
+  - View platform-wide statistics
+
+BANNED USER (is_banned: true):
+  - Cannot log in (403 error with reason shown)
+  - Admin can unban at any time
+
+
+------------------------------------------------------------
+6. FRONTEND PAGES & ROUTES
+------------------------------------------------------------
+
+PUBLIC (no login required):
+  /                         Landing page (hero, features, CTA)
+  /login                    Login page
+  /register                 Registration page
+  /missing-persons          Browse all missing persons (search + filter)
+  /missing-persons/:id      Individual case details + sightings
+  /institutions/register    Institution registration page
+
+AUTHENTICATED USER:
+  /dashboard                User dashboard (stats, recent activity,
+                            notifications bell, quick actions)
+  /report-missing           Report a missing person form
+  /report-sighting          Report a sighting form
+  /institutions/dashboard   Institution dashboard (submit/view records)
+                            Only accessible after institution approved
+
+ADMIN ONLY (/admin/*):
+  /admin                    Admin overview dashboard
+  /admin/missing-persons    Manage all missing person reports
+  /admin/sightings          Manage all sightings
+  /admin/case-events        View all case activity timeline
+  /admin/users              User directory (edit, delete)
+  /admin/accounts           Account management (ban, role change)
+  /admin/institutions       Institution management (approve/reject)
+
+
+------------------------------------------------------------
+7. KEY FEATURES IN DETAIL
+------------------------------------------------------------
+
+A. SMART MATCHING ENGINE
+   - When an institution submits an unidentified record, the backend
+     immediately runs a scoring algorithm against all active missing
+     person cases.
+   - Scoring weights:
+       Age match:         30%
+       Gender match:      25%
+       Location match:    30%
+       Description match: 15%
+   - Cases scoring >= 38/100 trigger a notification to the family.
+   - Uses Python difflib.SequenceMatcher for text similarity.
+   - Results include match score (0-100) and human-readable reasons.
+
+B. NOTIFICATION SYSTEM
+   - Two trigger events:
+     1. Someone reports a sighting on a case → reporter notified
+     2. Institution submits a record that matches a case → reporter notified
+   - Notifications show in a bell dropdown in the user Dashboard.
+   - Unread count badge updates every 60 seconds (polling).
+   - Notifications link directly to the relevant case page.
+   - Users can mark individual or all notifications as read.
+   - Users can dismiss/delete notifications.
+
+C. INSTITUTION CONNECT FLOW
+   1. Hospital/police staff creates a normal user account.
+   2. They go to /institutions/register and submit facility info.
+   3. Admin reviews and approves in the Institutions admin panel.
+   4. Once approved, the user's role becomes 'institution'.
+   5. Their navbar dropdown shows "Institution Dashboard" instead of
+      the regular dashboard.
+   6. They submit unidentified individual records (physical description
+      only — no name, ID, or personal information required).
+   7. System automatically matches records against missing persons.
+   8. Families receive notifications for potential matches.
+
+D. AUTHENTICATION
+   - JWT Bearer tokens stored in localStorage.
+   - Tokens include expiry (exp claim) decoded client-side.
+   - ProtectedRoute and AdminRoute components check expiry on
+     every page navigation — expired tokens are cleared automatically.
+   - Banned users receive a 403 response on login with the ban reason.
+
+E. IMAGE UPLOAD
+   - Accepts: JPG, JPEG, PNG, WEBP only
+   - Maximum size: 5 MB
+   - Custom drag-and-drop ImageUpload component with:
+       - Preview after selection
+       - Remove button
+       - Format and size hint text
+       - Drag-over highlight state
+   - Uploaded files stored in Backend/app/static/uploads/
+
+F. INTERNATIONALISATION
+   - Full translations for all 13+ pages in English and Amharic.
+   - Language toggle: pill button fixed bottom-right on every page.
+   - Preference saved to localStorage, persists across sessions.
+   - Translation files: src/locales/en/ and src/locales/am/
+
+G. DARK / LIGHT MODE
+   - Toggle button fixed bottom-right alongside language toggle.
+   - Preference saved to localStorage.
+   - Implemented via data-theme="dark" on <html> element.
+   - All page CSS files have [data-theme="dark"] override blocks.
+   - Admin shell is natively dark regardless of theme.
+
+
+------------------------------------------------------------
+8. FRONTEND COMPONENT LIBRARY
+------------------------------------------------------------
+
+Shared components (src/components/):
+  SiteNavbar         — top navigation bar with auth-aware profile
+                       dropdown (all non-admin, non-dashboard pages)
+  AdminLayout        — admin-exclusive dark sidebar shell with
+                       breadcrumb header (all /admin/* pages)
+  PageHeader         — consistent dark-teal page header with eyebrow,
+                       title, subtitle, and optional action slot
+  ImageUpload        — drag-and-drop image upload with preview,
+                       remove button, format hints
+  GlobalControls     — floating icon buttons for language + theme toggle
+  NotificationPanel  — bell button with unread badge and dropdown panel
+  ProtectedRoute     — JWT guard for authenticated routes
+  AdminRoute         — JWT + role guard for admin routes
+
+
+------------------------------------------------------------
+9. BACKEND FILE STRUCTURE
+------------------------------------------------------------
+
+Backend/
+├── app/
+│   ├── models/
+│   │   ├── user.py              User model (auth, roles, ban)
+│   │   ├── missing_person.py    Missing person model + photo
+│   │   ├── sighting.py          Sighting reports
+│   │   ├── case_event.py        Case activity timeline events
+│   │   ├── notification.py      User notifications
+│   │   ├── institution.py       Hospital/police facility profiles
+│   │   ├── unidentified_record.py  Unidentified individual records
+│   │   └── __init__.py          Exports all models
+│   ├── routes/
+│   │   ├── auth.py              Registration, login, /me
+│   │   ├── missing_person.py    CRUD + smart matching + photo serving
+│   │   ├── sighting.py          CRUD + sighting notification trigger
+│   │   ├── case_event.py        Case timeline routes
+│   │   ├── dashboard_reports.py User dashboard summary
+│   │   ├── admin.py             All admin management routes + ban/unban
+│   │   ├── institution.py       Institution routes + matching engine
+│   │   └── notification.py      Notification CRUD routes
+│   ├── utils/
+│   │   └── admin_required.py    @admin_required decorator
+│   ├── static/uploads/          Uploaded photo storage
+│   ├── extensions.py            db, migrate, bcrypt, jwt instances
+│   ├── config.py                Environment-based configuration
+│   └── __init__.py              create_app factory + blueprint registration
+├── migrations/                  Alembic migration history
+├── run.py                       App entry point (reads PORT env var)
+├── requirements.txt             Python dependencies
+├── Procfile                     Railway start command
+└── .env.example                 Environment variable template
+
+
+------------------------------------------------------------
+10. ENVIRONMENT VARIABLES
+------------------------------------------------------------
+
+Backend (.env):
+  DATABASE_URL     PostgreSQL connection string
+                   Format: postgresql+psycopg://user:pass@host/db?sslmode=require
+  SECRET_KEY       Flask session secret (any long random string)
+  JWT_SECRET_KEY   JWT signing key (any long random string)
+
+Frontend (.env):
+  VITE_API_BASE    Backend URL
+                   Dev: http://127.0.0.1:5000
+                   Prod: https://reconnectethiopia-production.up.railway.app
+
+
+------------------------------------------------------------
+11. DEPLOYMENT ARCHITECTURE
+------------------------------------------------------------
+
+  [User Browser]
+       │
+       ▼
+  [Vercel CDN]  ←─ serves React SPA (static files)
+       │
+       │  API calls to
+       ▼
+  [Railway]     ←─ runs Flask Python server
+       │
+       │  reads/writes to
+       ▼
+  [Neon]        ←─ serverless PostgreSQL database
+
+  [GitHub]      ←─ source code, auto-deploys on push to main
+       │
+       ├──▶ Vercel (frontend auto-deploy)
+       └──▶ Railway (backend auto-deploy)
+
+
+------------------------------------------------------------
+12. KNOWN LIMITATIONS & FUTURE IMPROVEMENTS
+------------------------------------------------------------
+
+CURRENT LIMITATIONS:
+  1. No real-time notifications (uses 60s polling instead of WebSockets)
+  2. No email notifications — only in-app bell notifications
+  3. Photo matching is description-based (text similarity) not AI/facial
+  4. No pagination on large result sets (all records loaded at once)
+  5. API URLs are environment-variable based but require manual
+     redeploy when changed
+  6. No password reset / forgot password flow implemented
+
+SUGGESTED FUTURE IMPROVEMENTS:
+  1. WebSocket notifications using Flask-SocketIO for real-time alerts
+  2. Email/SMS notifications via SendGrid or Africa's Talking API
+  3. AI-based photo similarity matching for better unidentified records
+  4. Pagination and infinite scroll for missing persons list
+  5. Map view showing last-seen locations using Leaflet.js
+  6. Mobile app (React Native) using the same Flask API
+  7. Case sharing via WhatsApp / Telegram integration
+  8. Multi-language support beyond Amharic (Oromo, Tigrinya, Somali)
+  9. Password reset flow via email OTP
+  10. Audit log for all admin actions
+  11. Bulk import of missing person reports via CSV
+  12. Public API for third-party integration with NGOs and media
+
+
+------------------------------------------------------------
+13. HOW TO RUN LOCALLY
+------------------------------------------------------------
+
+REQUIREMENTS:
+  - Python 3.11+
+  - Node.js 18+
+  - PostgreSQL running locally
+
+BACKEND SETUP:
+  cd Backend
+  python -m venv venv
+  .\venv\Scripts\Activate.ps1          # Windows
+  pip install -r requirements.txt
+  copy .env.example .env               # fill in DATABASE_URL etc.
+  $env:FLASK_APP = "run.py"
+  flask db upgrade
+  python run.py
+  # Runs on http://127.0.0.1:5000
+
+FRONTEND SETUP:
+  cd reconnect-frontend
+  npm install
+  copy .env.example .env               # set VITE_API_BASE=http://127.0.0.1:5000
+  npm run dev
+  # Runs on http://localhost:5173
+
+CREATE FIRST ADMIN:
+  After registering an account, run in PostgreSQL:
+  UPDATE users SET role = 'admin' WHERE email = 'your@email.com';
+
+
+------------------------------------------------------------
+14. PROJECT STATISTICS
+------------------------------------------------------------
+
+Frontend:
+  Pages:          18 (public + user + admin + institution)
+  Components:     8 shared components
+  CSS files:      18+ (one per page/component)
+  Translation keys: ~600 keys across EN and AM
+  Routes:         20 (App.jsx)
+
+Backend:
+  Models:         7
+  Route files:    8 blueprints
+  API endpoints:  ~45 endpoints
+  DB migrations:  7 migration files
+  Lines of code:  ~3,500 Python
+
+------------------------------------------------------------
+END OF DOCUMENTATION NOTES
+============================================================

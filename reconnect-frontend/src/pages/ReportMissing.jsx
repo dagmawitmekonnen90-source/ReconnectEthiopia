@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import GlobalControls from "../components/GlobalControls";
 import SiteNavbar from "../components/SiteNavbar";
 import PageHeader from "../components/PageHeader";
+import ImageUpload from "../components/ImageUpload";
 import "./ReportMissing.css";
 
 function ReportMissing() {
@@ -25,10 +26,6 @@ function ReportMissing() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handlePhotoChange = (event) => {
-    setPhoto(event.target.files[0] || null);
   };
 
   const handleSubmit = async (event) => {
@@ -77,7 +74,6 @@ function ReportMissing() {
       setMessage(t("reportMissing.successMsg"));
       setFormData({ full_name: "", age: "", gender: "", description: "", last_seen_location: "", last_seen_date: "" });
       setPhoto(null);
-      document.getElementById("missing-photo").value = "";
     } catch (err) {
       setError(err.message);
     } finally {
@@ -157,17 +153,14 @@ function ReportMissing() {
           </div>
 
           <div className="form-section">
-            <h2>{t("reportMissing.sectionPhoto")}</h2>
-            <div className="form-group">
-              <label htmlFor="missing-photo">{t("reportMissing.photoLabel")}</label>
-              <input
-                id="missing-photo"
-                type="file"
-                accept="image/jpeg,image/png,image/webp,image/jpg"
-                onChange={handlePhotoChange}
-              />
-              <small>{t("reportMissing.photoHelper")}</small>
-            </div>
+            <ImageUpload
+              id="missing-photo"
+              label={t("reportMissing.photoLabel")}
+              hint={t("reportMissing.photoHelper")}
+              optional={true}
+              value={photo}
+              onChange={(file) => setPhoto(file)}
+            />
           </div>
 
           <div className="form-section">

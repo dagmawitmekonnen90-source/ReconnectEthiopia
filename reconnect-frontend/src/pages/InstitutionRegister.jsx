@@ -63,35 +63,30 @@ export default function InstitutionRegister() {
       <div className="inst-reg-container">
 
         <div className="inst-reg-hero">
-          <span className="inst-reg-type-badge">🏥 Police &amp; Hospital Connect</span>
-          <h1>Register Your Institution</h1>
-          <p>
-            Hospitals and police stations can submit unidentified patient and
-            detainee records — no personal info required. Our system automatically
-            cross-references them with reported missing persons and notifies families
-            of potential matches.
-          </p>
+          <span className="inst-reg-type-badge">{t("institutionRegister.badge")}</span>
+          <h1>{t("institutionRegister.title")}</h1>
+          <p>{t("institutionRegister.desc")}</p>
 
           <div className="inst-reg-how">
             <div className="inst-reg-step">
               <span>1</span>
               <div>
-                <strong>Register &amp; get approved</strong>
-                <small>Submit your facility details. An admin reviews and approves within 24 hours.</small>
+                <strong>{t("institutionRegister.step1Title")}</strong>
+                <small>{t("institutionRegister.step1Desc")}</small>
               </div>
             </div>
             <div className="inst-reg-step">
               <span>2</span>
               <div>
-                <strong>Submit unidentified records</strong>
-                <small>Describe physical appearance — no name, ID, or personal info needed.</small>
+                <strong>{t("institutionRegister.step2Title")}</strong>
+                <small>{t("institutionRegister.step2Desc")}</small>
               </div>
             </div>
             <div className="inst-reg-step">
               <span>3</span>
               <div>
-                <strong>Families get notified</strong>
-                <small>When a record matches a missing person, the family is alerted automatically.</small>
+                <strong>{t("institutionRegister.step3Title")}</strong>
+                <small>{t("institutionRegister.step3Desc")}</small>
               </div>
             </div>
           </div>
@@ -102,84 +97,71 @@ export default function InstitutionRegister() {
           {success ? (
             <div className="inst-reg-success">
               <div className="inst-reg-success-icon">✓</div>
-              <h2>Application Submitted</h2>
-              <p>
-                Your institution registration is under review. An admin will approve
-                it within 24 hours. You'll be able to submit records once approved.
-              </p>
-              <Link to="/dashboard" className="inst-reg-btn">Go to Dashboard</Link>
+              <h2>{t("institutionRegister.successTitle")}</h2>
+              <p>{t("institutionRegister.successDesc")}</p>
+              <Link to="/dashboard" className="inst-reg-btn">{t("institutionRegister.successBtn")}</Link>
             </div>
           ) : (
             <>
               <div className="inst-reg-form-header">
-                <h2>Facility Details</h2>
-                <p>All fields marked * are required.</p>
+                <h2>{t("institutionRegister.formTitle")}</h2>
+                <p>{t("institutionRegister.formDesc")}</p>
               </div>
 
               <form onSubmit={handleSubmit} className="inst-reg-form">
 
                 <div className="inst-reg-field">
-                  <label htmlFor="facility_name">Facility Name *</label>
+                  <label htmlFor="facility_name">{t("institutionRegister.facilityNameLabel")}</label>
                   <input
                     id="facility_name" name="facility_name" type="text"
-                    placeholder="e.g. Addis Ababa General Hospital"
+                    placeholder={t("institutionRegister.facilityNamePlaceholder")}
                     value={form.facility_name} onChange={handleChange} required
                   />
                 </div>
 
                 <div className="inst-reg-field">
-                  <label htmlFor="facility_type">Facility Type *</label>
+                  <label htmlFor="facility_type">{t("institutionRegister.facilityTypeLabel")}</label>
                   <select id="facility_type" name="facility_type" value={form.facility_type} onChange={handleChange} required>
-                    <option value="hospital">🏥 Hospital / Health Facility</option>
-                    <option value="police">🚔 Police Station / Law Enforcement</option>
+                    <option value="hospital">{t("institutionRegister.typeHospital")}</option>
+                    <option value="police">{t("institutionRegister.typePolice")}</option>
                   </select>
                 </div>
 
                 <div className="inst-reg-row">
                   <div className="inst-reg-field">
-                    <label htmlFor="region">Region *</label>
-                    <input
-                      id="region" name="region" type="text"
-                      placeholder="e.g. Addis Ababa"
-                      value={form.region} onChange={handleChange} required
-                    />
+                    <label htmlFor="region">{t("institutionRegister.regionLabel")}</label>
+                    <input id="region" name="region" type="text"
+                      placeholder={t("institutionRegister.regionPlaceholder")}
+                      value={form.region} onChange={handleChange} required />
                   </div>
                   <div className="inst-reg-field">
-                    <label htmlFor="city">City *</label>
-                    <input
-                      id="city" name="city" type="text"
-                      placeholder="e.g. Addis Ababa"
-                      value={form.city} onChange={handleChange} required
-                    />
+                    <label htmlFor="city">{t("institutionRegister.cityLabel")}</label>
+                    <input id="city" name="city" type="text"
+                      placeholder={t("institutionRegister.cityPlaceholder")}
+                      value={form.city} onChange={handleChange} required />
                   </div>
                 </div>
 
                 <div className="inst-reg-field">
-                  <label htmlFor="address">Address (optional)</label>
-                  <input
-                    id="address" name="address" type="text"
-                    placeholder="Street address or landmark"
-                    value={form.address} onChange={handleChange}
-                  />
+                  <label htmlFor="address">{t("institutionRegister.addressLabel")}</label>
+                  <input id="address" name="address" type="text"
+                    placeholder={t("institutionRegister.addressPlaceholder")}
+                    value={form.address} onChange={handleChange} />
                 </div>
 
                 <div className="inst-reg-field">
-                  <label htmlFor="contact_phone">Contact Phone (optional)</label>
-                  <input
-                    id="contact_phone" name="contact_phone" type="tel"
-                    placeholder="+251 ..."
-                    value={form.contact_phone} onChange={handleChange}
-                  />
+                  <label htmlFor="contact_phone">{t("institutionRegister.phoneLabel")}</label>
+                  <input id="contact_phone" name="contact_phone" type="tel"
+                    placeholder={t("institutionRegister.phonePlaceholder")}
+                    value={form.contact_phone} onChange={handleChange} />
                 </div>
 
                 {error && <div className="inst-reg-error">{error}</div>}
 
-                <div className="inst-reg-privacy">
-                  🔒 Your facility information is only visible to platform admins and is used solely to verify your identity. It is never shown to the public.
-                </div>
+                <div className="inst-reg-privacy">{t("institutionRegister.privacyNote")}</div>
 
                 <button type="submit" className="inst-reg-btn inst-reg-btn--full" disabled={loading}>
-                  {loading ? "Submitting…" : "Submit Registration →"}
+                  {loading ? t("institutionRegister.submitting") : t("institutionRegister.submitBtn")}
                 </button>
 
               </form>
