@@ -86,7 +86,10 @@ function SiteNavbar({ variant = "solid" }) {
           <Link to="/missing-persons" className={isActive("/missing-persons") ? "active" : ""}>{t("nav.missingPersons")}</Link>
           <Link to="/report-missing" className={isActive("/report-missing") ? "active" : ""}>{t("nav.reportMissing")}</Link>
           <Link to="/report-sighting" className={isActive("/report-sighting") ? "active" : ""}>{t("nav.reportSighting")}</Link>
-          <Link to="/institutions/register" className={isActive("/institutions") ? "active" : ""}>For Institutions</Link>
+          {/* Only show For Institutions if not logged in as institution */}
+          {(!isLoggedIn || (user?.role !== "institution" && user?.role !== "admin")) && (
+            <Link to="/institutions/register" className={isActive("/institutions") ? "active" : ""}>For Institutions</Link>
+          )}
         </div>
 
         {/* ===== AUTH ACTIONS ===== */}
@@ -186,10 +189,17 @@ function SiteNavbar({ variant = "solid" }) {
           <Link to="/missing-persons" onClick={() => setMenuOpen(false)} className={isActive("/missing-persons") ? "active" : ""}>{t("nav.missingPersons")}</Link>
           <Link to="/report-missing" onClick={() => setMenuOpen(false)} className={isActive("/report-missing") ? "active" : ""}>{t("nav.reportMissing")}</Link>
           <Link to="/report-sighting" onClick={() => setMenuOpen(false)} className={isActive("/report-sighting") ? "active" : ""}>{t("nav.reportSighting")}</Link>
+          {(!isLoggedIn || (user?.role !== "institution" && user?.role !== "admin")) && (
+            <Link to="/institutions/register" onClick={() => setMenuOpen(false)}>For Institutions</Link>
+          )}
 
           {isLoggedIn ? (
             <>
-              <Link to="/dashboard" onClick={() => setMenuOpen(false)}>{t("nav.dashboard")}</Link>
+              {user?.role === "institution" ? (
+                <Link to="/institutions/dashboard" onClick={() => setMenuOpen(false)}>🏥 Institution Dashboard</Link>
+              ) : (
+                <Link to="/dashboard" onClick={() => setMenuOpen(false)}>{t("nav.dashboard")}</Link>
+              )}
               {isAdmin && <Link to="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</Link>}
               <button onClick={() => { setMenuOpen(false); handleLogout(); }}>{t("dashboard.signOut")}</button>
             </>
