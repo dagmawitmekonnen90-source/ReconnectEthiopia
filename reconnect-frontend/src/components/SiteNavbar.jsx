@@ -86,6 +86,7 @@ function SiteNavbar({ variant = "solid" }) {
           <Link to="/missing-persons" className={isActive("/missing-persons") ? "active" : ""}>{t("nav.missingPersons")}</Link>
           <Link to="/report-missing" className={isActive("/report-missing") ? "active" : ""}>{t("nav.reportMissing")}</Link>
           <Link to="/report-sighting" className={isActive("/report-sighting") ? "active" : ""}>{t("nav.reportSighting")}</Link>
+          <Link to="/institutions/register" className={isActive("/institutions") ? "active" : ""}>For Institutions</Link>
         </div>
 
         {/* ===== AUTH ACTIONS ===== */}
