@@ -133,9 +133,15 @@ def create_sighting():
 @sighting_bp.route("", methods=["GET"])
 def get_sightings():
 
-    sightings = Sighting.query.order_by(
-        Sighting.created_at.desc()
-    ).all()
+    # Filter by missing_person_id if provided as query param
+    missing_person_id = request.args.get("missing_person_id", type=int)
+
+    query = Sighting.query.order_by(Sighting.created_at.desc())
+
+    if missing_person_id:
+        query = query.filter_by(missing_person_id=missing_person_id)
+
+    sightings = query.all()
 
     results = []
 

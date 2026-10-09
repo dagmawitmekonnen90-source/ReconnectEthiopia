@@ -136,15 +136,15 @@ export default function AdminInstitutions() {
       {/* Stats */}
       <div className="ai-stats">
         {[
-          { label: "Total",    value: stats.total,    color: "#4db8af" },
-          { label: "Pending",  value: stats.pending,  color: "#d4a017" },
-          { label: "Approved", value: stats.approved, color: "#6ecf92" },
-          { label: "Rejected", value: stats.rejected, color: "#e89090" },
-          { label: "Records",  value: records.length, color: "#8fa8a3" },
+          { label: "Total",    value: stats.total,    color: "#73D2B4", icon: "◎" },
+          { label: "Pending",  value: stats.pending,  color: "#E5C56A", icon: "⏳" },
+          { label: "Approved", value: stats.approved, color: "#6ecf92", icon: "✓" },
+          { label: "Rejected", value: stats.rejected, color: "#f0a0a0", icon: "✕" },
+          { label: "Records",  value: records.length, color: "#A3B5AE", icon: "📋" },
         ].map(s => (
           <div className="ai-stat" key={s.label}>
-            <strong style={{ color: s.color }}>{s.value}</strong>
-            <small>{s.label}</small>
+            <div className="ai-stat-icon">{s.icon}</div>
+            <div><strong style={{ color: s.color }}>{s.value}</strong><small>{s.label}</small></div>
           </div>
         ))}
       </div>

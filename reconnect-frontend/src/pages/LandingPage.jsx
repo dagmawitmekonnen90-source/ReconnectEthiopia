@@ -29,16 +29,16 @@ function LandingPage() {
 
         <div className="hero-overlay"></div>
 
+        {/* Vertical eyebrow — right side of hero */}
+        <div className="hero-eyebrow-vertical">
+          {t("landing.eyebrow")}
+        </div>
+
         {/* ================= NAVIGATION ================= */}
         <SiteNavbar variant="overlay" />
 
         {/* ================= HERO CONTENT ================= */}
         <div className="hero-content">
-
-          <div className="hero-eyebrow">
-            <span></span>
-            {t("landing.eyebrow")}
-          </div>
 
           <h1>
             {t("landing.heroTitle1")}
@@ -251,7 +251,7 @@ function LandingPage() {
 
           <div className="footer-column">
             <h4>{t("landing.footerPurposeTitle")}</h4>
-            <p>{t("landing.footerPurposeDesc")}</p>
+            <span className="footer-purpose-text">{t("landing.footerPurposeDesc")}</span>
           </div>
 
         </div>

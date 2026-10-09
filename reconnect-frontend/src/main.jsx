@@ -6,6 +6,7 @@ import i18n from "./i18n";
 import { ThemeProvider } from "./context/ThemeContext";
 import App from "./App";
 import "./index.css";
+import "./global-overrides.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

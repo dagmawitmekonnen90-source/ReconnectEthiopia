@@ -1,31 +1,48 @@
 /* =========================================================
-   RECONNECT ETHIOPIA
-   Complete Application Design System
+   RECONNECT ETHIOPIA — Design Token System
    ========================================================= */
 
-:root {
-  --forest: #082f2c;
-  --forest-dark: #051f1d;
-  --forest-deep: #063c38;
+/* LIGHT MODE */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
 
-  --emerald: #0f766e;
-  --emerald-dark: #0b5a54;
+  --bg-primary:    #F8F7F4;
+  --bg-card:       #FFFFFF;
+  --bg-secondary:  #E6F2F0;
+  --bg-accent:     #FBF1DC;
 
-  --gold: #c6a15b;
-  --gold-light: #d8bc7c;
+  --text-primary:  #1F2937;
+  --text-secondary:#4B5563;
+  --text-muted:    #596579;
 
-  --ivory: #f5f1e8;
-  --ivory-dark: #ece7dc;
-  --stone: #ddd8cc;
+  --brand-primary: #0F766E;
+  --brand-hover:   #0B5A54;
+  --brand-accent:  #D4A017;
 
-  --charcoal: #151b19;
-  --text: #253330;
-  --muted: #71817a;
+  --border-color:  #E5E2DA;
+  --input-bg:      #FFFFFF;
+  --input-text:    #1F2937;
+  --focus-ring:    #0F766E;
 
-  --white: #ffffff;
+  /* Legacy aliases for existing components */
+  --forest:        #0B5A54;
+  --forest-dark:   #082f2c;
+  --forest-deep:   #063c38;
+  --emerald:       #0F766E;
+  --emerald-dark:  #0B5A54;
+  --gold:          #D4A017;
+  --gold-light:    #e8c84a;
+  --ivory:         #F8F7F4;
+  --ivory-dark:    #E6F2F0;
+  --stone:         #E5E2DA;
+  --charcoal:      #1F2937;
+  --text:          #1F2937;
+  --muted:         #596579;
+  --white:         #FFFFFF;
 
-  --shadow-soft: 0 20px 60px rgba(8, 47, 44, 0.08);
-  --shadow-medium: 0 25px 70px rgba(8, 47, 44, 0.14);
+  --shadow-soft:   0 20px 60px rgba(15, 118, 110, 0.08);
+  --shadow-medium: 0 25px 70px rgba(15, 118, 110, 0.14);
 
   --radius-sm: 10px;
   --radius-md: 16px;
@@ -33,39 +50,51 @@
   --radius-xl: 32px;
 }
 
-/* =========================================================
-   DARK MODE TOKENS
-   Applied when <html data-theme="dark">
-   ========================================================= */
-
+/* DARK MODE */
 [data-theme="dark"] {
-  --forest: #a8d5d0;
-  --forest-dark: #7bbfb8;
-  --forest-deep: #c2e8e4;
+  color-scheme: dark;
 
-  --emerald: #4db8af;
-  --emerald-dark: #3a9e96;
+  --bg-primary:    #111C1A;
+  --bg-card:       #1B2925;
+  --bg-secondary:  #263632;
+  --bg-accent:     #342F20;
 
-  --gold: #d8bc7c;
-  --gold-light: #e8d09a;
+  --text-primary:  #F4F7F5;
+  --text-secondary:#C1CEC9;
+  --text-muted:    #A3B5AE;
 
-  --ivory: #151e1d;
-  --ivory-dark: #1c2827;
-  --stone: #2a3836;
+  --brand-primary: #0F766E;
+  --brand-hover:   #0B5A54;
+  --brand-accent:  #E5C56A;
 
-  --charcoal: #e8e0d0;
-  --text: #d4cfc5;
-  --muted: #8fa8a3;
+  --border-color:  #34453F;
+  --input-bg:      #1B2925;
+  --input-text:    #F4F7F5;
+  --focus-ring:    #73D2B4;
 
-  --white: #1e2e2c;
+  /* Legacy aliases */
+  --forest:        #73D2B4;
+  --forest-dark:   #4db8af;
+  --forest-deep:   #63c8a4;
+  --emerald:       #73D2B4;
+  --emerald-dark:  #4db8af;
+  --gold:          #E5C56A;
+  --gold-light:    #f0d080;
+  --ivory:         #111C1A;
+  --ivory-dark:    #1B2925;
+  --stone:         #34453F;
+  --charcoal:      #F4F7F5;
+  --text:          #F4F7F5;
+  --muted:         #A3B5AE;
+  --white:         #1B2925;
 
-  --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.35);
-  --shadow-medium: 0 25px 70px rgba(0, 0, 0, 0.5);
+  --shadow-soft:   0 20px 60px rgba(0, 0, 0, 0.40);
+  --shadow-medium: 0 25px 70px rgba(0, 0, 0, 0.55);
 }
 
 [data-theme="dark"] body {
-  background: #151e1d;
-  color: #d4cfc5;
+  background: #111C1A;
+  color: #F4F7F5;
 }
 
 /* =========================================================
@@ -94,7 +123,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-
 button,
 input,
 textarea,

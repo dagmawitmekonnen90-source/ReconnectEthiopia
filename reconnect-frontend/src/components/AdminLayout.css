@@ -370,3 +370,196 @@
     padding: 12px 16px;
   }
 }
+
+/* =========================================================
+   ADMIN SHELL — Always dark, ignores light/dark theme toggle
+   ========================================================= */
+
+[data-admin="true"],
+[data-admin="true"] * {
+  color-scheme: dark;
+}
+
+/* Force dark backgrounds on all admin page wrappers */
+[data-admin="true"] .admin-page,
+[data-admin="true"] .admin-missing-page,
+[data-admin="true"] .admin-sightings-page,
+[data-admin="true"] .admin-users-page,
+[data-admin="true"] .admin-events-page {
+  background: #111C1A !important;
+  color: #F4F7F5 !important;
+}
+
+/* Force dark on all white/light cards inside admin */
+[data-admin="true"] .stat-card,
+[data-admin="true"] .admin-sightings-stat-card,
+[data-admin="true"] .admin-users-stat-card,
+[data-admin="true"] .admin-event-stat-card,
+[data-admin="true"] .management-card,
+[data-admin="true"] .admin-sightings-panel,
+[data-admin="true"] .admin-sightings-toolbar,
+[data-admin="true"] .missing-management-panel,
+[data-admin="true"] .admin-table-wrapper,
+[data-admin="true"] .admin-sightings-table-wrapper,
+[data-admin="true"] .admin-users-panel,
+[data-admin="true"] .admin-users-toolbar,
+[data-admin="true"] .admin-events-table-card,
+[data-admin="true"] .admin-events-toolbar,
+[data-admin="true"] .admin-events-filter-summary,
+[data-admin="true"] .admin-users-table-footer,
+[data-admin="true"] .admin-users-security-note,
+[data-admin="true"] .empty-state,
+[data-admin="true"] .admin-sightings-state,
+[data-admin="true"] .admin-users-state,
+[data-admin="true"] .admin-events-state,
+[data-admin="true"] .admin-events-empty {
+  background: #1B2925 !important;
+  border-color: #2a3836 !important;
+}
+
+/* Table headers */
+[data-admin="true"] .admin-missing-table th,
+[data-admin="true"] .admin-sightings-table th,
+[data-admin="true"] .admin-users-table th,
+[data-admin="true"] .admin-events-table th {
+  background: #111C1A !important;
+  color: #73D2B4 !important;
+}
+
+/* Table rows */
+[data-admin="true"] .admin-missing-table td,
+[data-admin="true"] .admin-sightings-table td,
+[data-admin="true"] .admin-users-table td,
+[data-admin="true"] .admin-events-table td {
+  border-color: #2a3836 !important;
+  color: #C1CEC9 !important;
+}
+
+[data-admin="true"] .admin-missing-table tbody tr:hover,
+[data-admin="true"] .admin-sightings-table tbody tr:hover,
+[data-admin="true"] .admin-users-table tbody tr:hover,
+[data-admin="true"] .admin-events-table tbody tr:hover {
+  background: rgba(115, 210, 180, 0.04) !important;
+}
+
+/* Inputs */
+[data-admin="true"] input,
+[data-admin="true"] select,
+[data-admin="true"] textarea {
+  background: #1B2925 !important;
+  border-color: #2a3836 !important;
+  color: #F4F7F5 !important;
+}
+
+[data-admin="true"] input::placeholder,
+[data-admin="true"] textarea::placeholder {
+  color: #A3B5AE !important;
+}
+
+[data-admin="true"] input:focus,
+[data-admin="true"] select:focus,
+[data-admin="true"] textarea:focus {
+  border-color: #73D2B4 !important;
+  background: #263632 !important;
+}
+
+/* Text */
+[data-admin="true"] h1,
+[data-admin="true"] h2,
+[data-admin="true"] h3 {
+  color: #F4F7F5 !important;
+}
+
+[data-admin="true"] p,
+[data-admin="true"] span:not(.site-navbar__avatar):not(.role-dot):not(.current-dot):not(.toolbar-dot) {
+  color: #A3B5AE;
+}
+
+/* Modal overlays */
+[data-admin="true"] .modal-overlay,
+[data-admin="true"] .admin-user-modal-overlay,
+[data-admin="true"] .admin-events-modal-overlay,
+[data-admin="true"] .sighting-modal-overlay,
+[data-admin="true"] .acc-modal-overlay {
+  background: rgba(0, 0, 0, 0.82) !important;
+}
+
+[data-admin="true"] .person-modal,
+[data-admin="true"] .admin-user-modal,
+[data-admin="true"] .admin-events-modal,
+[data-admin="true"] .sighting-modal,
+[data-admin="true"] .acc-modal {
+  background: #1B2925 !important;
+  border-color: #2a3836 !important;
+}
+
+[data-admin="true"] .admin-user-modal-footer,
+[data-admin="true"] .admin-events-modal-footer,
+[data-admin="true"] .sighting-modal-footer,
+[data-admin="true"] .acc-modal__footer {
+  background: #111C1A !important;
+  border-top-color: #2a3836 !important;
+}
+
+/* Modal body/form inputs */
+[data-admin="true"] .details-grid > div,
+[data-admin="true"] .detail-item,
+[data-admin="true"] .detail-highlight,
+[data-admin="true"] .description-box,
+[data-admin="true"] .reporter-box,
+[data-admin="true"] .description-section,
+[data-admin="true"] .admin-events-detail-description,
+[data-admin="true"] .admin-events-record-note,
+[data-admin="true"] .user-profile-highlight,
+[data-admin="true"] .user-detail-item,
+[data-admin="true"] .user-account-note,
+[data-admin="true"] .edit-warning,
+[data-admin="true"] .admin-users-security-note,
+[data-admin="true"] .acc-ban-reason-box {
+  background: #263632 !important;
+  border-color: #2a3836 !important;
+}
+
+/* Form labels inside admin */
+[data-admin="true"] label,
+[data-admin="true"] .filter-control label,
+[data-admin="true"] .admin-user-form-group label,
+[data-admin="true"] .acc-label {
+  color: #A3B5AE !important;
+}
+
+/* Close buttons */
+[data-admin="true"] .close-button,
+[data-admin="true"] .admin-user-modal-close,
+[data-admin="true"] .admin-events-close-button,
+[data-admin="true"] .modal-close,
+[data-admin="true"] .acc-modal__close {
+  color: #A3B5AE !important;
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+/* Borders and dividers */
+[data-admin="true"] .filter-footer,
+[data-admin="true"] .admin-users-table-footer,
+[data-admin="true"] .edit-user-heading {
+  border-color: #2a3836 !important;
+}
+
+/* Refresh/back buttons */
+[data-admin="true"] .refresh-button,
+[data-admin="true"] .admin-users-refresh-button,
+[data-admin="true"] .admin-events-refresh-button {
+  background: rgba(115, 210, 180, 0.08) !important;
+  border-color: #2a3836 !important;
+  color: #73D2B4 !important;
+}
+
+/* Scrollbars */
+[data-admin="true"] ::-webkit-scrollbar-track {
+  background: #1B2925;
+}
+
+[data-admin="true"] ::-webkit-scrollbar-thumb {
+  background: #2a3836;
+}

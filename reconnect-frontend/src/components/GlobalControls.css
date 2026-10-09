@@ -3,6 +3,25 @@
    Fixed bottom-right on every page
    ========================================================= */
 
+/* Light mode tokens */
+:root,
+[data-theme="light"] {
+  --gc-bg: rgba(255, 255, 255, 0.95);
+  --gc-bg-hover: #FFFFFF;
+  --gc-border: rgba(15, 118, 110, 0.25);
+  --gc-text: #1F2937;
+  --gc-shadow: rgba(15, 118, 110, 0.15);
+}
+
+/* Dark mode tokens */
+[data-theme="dark"] {
+  --gc-bg: rgba(27, 41, 37, 0.95);
+  --gc-bg-hover: #1B2925;
+  --gc-border: rgba(115, 210, 180, 0.35);
+  --gc-text: #F4F7F5;
+  --gc-shadow: rgba(0, 0, 0, 0.50);
+}
+
 .global-controls {
   position: fixed;
   bottom: 24px;
@@ -45,28 +64,9 @@
   line-height: 1;
 }
 
-/* Mobile — same size, already compact */
 @media (max-width: 480px) {
   .global-controls-btn {
     width: 36px;
     height: 36px;
   }
 }
-:root {
-  --gc-bg: rgba(255, 255, 255, 0.92);
-  --gc-bg-hover: rgba(255, 255, 255, 1);
-  --gc-border: rgba(8, 47, 44, 0.14);
-  --gc-text: #082f2c;
-  --gc-shadow: rgba(8, 47, 44, 0.15);
-}
-
-/* Dark mode tokens */
-[data-theme="dark"] {
-  --gc-bg: rgba(30, 45, 42, 0.92);
-  --gc-bg-hover: rgba(40, 58, 54, 1);
-  --gc-border: rgba(198, 161, 91, 0.25);
-  --gc-text: #e8e0d0;
-  --gc-shadow: rgba(0, 0, 0, 0.4);
-}
-
-/* Light mode tokens */

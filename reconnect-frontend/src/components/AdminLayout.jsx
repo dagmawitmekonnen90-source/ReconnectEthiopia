@@ -49,7 +49,7 @@ function AdminLayout({ title, subtitle, children }) {
   ];
 
   return (
-    <div className="admin-shell">
+    <div className="admin-shell" data-admin="true">
 
       <GlobalControls />
 

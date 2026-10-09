@@ -1,0 +1,815 @@
+/* =========================================================
+   RECONNECT ETHIOPIA — Global Overrides
+   Semantic token wiring + safe margins + mobile fixes
+   ========================================================= */
+
+/* =========================================================
+   0. BODY & BASE — wire semantic tokens
+   ========================================================= */
+
+body {
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Cards */
+.missing-card,
+.missing-search-panel,
+.missing-stat-card,
+.db-stat-card,
+.db-action-card,
+.db-panel,
+.report-missing-form,
+.report-sighting-form,
+.inst-dash-form,
+.inst-record-card,
+.admin-users-panel,
+.admin-sightings-panel,
+.admin-events-table-card,
+.acc-stat,
+.acc-table-wrap,
+.ai-stat,
+.ai-table-wrap {
+  background: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Inputs */
+input:not([type="file"]),
+select,
+textarea {
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border-color: var(--border-color) !important;
+}
+
+input:not([type="file"]):focus,
+select:focus,
+textarea:focus {
+  border-color: var(--focus-ring) !important;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.10) !important;
+}
+
+/* Headings — only on light background areas, not dark panels */
+.missing-page h1, .missing-page h2, .missing-page h3,
+.report-missing-page h1, .report-missing-page h2, .report-missing-page h3,
+.report-sighting-page h1, .report-sighting-page h2, .report-sighting-page h3,
+.db-page h1, .db-page h2, .db-page h3,
+.inst-dash-page h1, .inst-dash-page h2, .inst-dash-page h3,
+.details-page h1, .details-page h2, .details-page h3 {
+  color: var(--text-primary);
+}
+
+/* PageHeader title and subtitle have their own explicit white rules in PageHeader.css */
+/* Do NOT override .page-header__title here */
+
+/* Do NOT override headings inside dark visual panels (login/register left side) */
+.login-visual h1,
+.login-visual h2,
+.register-visual h1,
+.register-visual h2 {
+  color: #ffffff !important;
+}
+
+/* Body text — only on content pages, not inside dark panels */
+.missing-page p,
+.report-missing-page p,
+.report-sighting-page p,
+.db-page p,
+.inst-dash-page p,
+.details-page p {
+  color: var(--text-secondary);
+}
+
+/* Muted text */
+.muted, .text-muted,
+.db-welcome-desc,
+.db-stat-label,
+.db-action-content p,
+.missing-stat-card span,
+.inst-reg-hint {
+  color: var(--text-muted) !important;
+}
+
+/* Borders */
+.db-topbar,
+.db-footer,
+.db-panel-header,
+.db-report-item,
+.inst-record-row {
+  border-color: var(--border-color) !important;
+}
+
+/* Primary brand buttons */
+.missing-view-button,
+.missing-empty-button,
+.missing-retry-button,
+.submit-report-button,
+.sighting-submit-button,
+.db-cta-btn,
+.inst-dash-btn:not(.inst-dash-btn--ghost),
+.inst-reg-btn {
+  background: var(--brand-primary) !important;
+  color: #ffffff !important;
+}
+
+.missing-view-button:hover,
+.missing-empty-button:hover,
+.missing-retry-button:hover,
+.submit-report-button:hover,
+.sighting-submit-button:hover,
+.db-cta-btn:hover,
+.inst-dash-btn:not(.inst-dash-btn--ghost):hover,
+.inst-reg-btn:hover {
+  background: var(--brand-hover) !important;
+}
+
+/* Section eyebrows / labels */
+.missing-eyebrow,
+.db-eyebrow,
+.db-section-heading span,
+.db-panel-header > div > span,
+.page-header__eyebrow,
+.admin-shell__breadcrumb span {
+  color: var(--brand-accent) !important;
+}
+
+/* Stat numbers */
+.db-stat-number,
+.missing-stat-card strong {
+  color: var(--text-primary) !important;
+}
+
+/* Search panel background */
+.missing-search-panel {
+  background: var(--bg-card) !important;
+}
+
+.missing-search-box {
+  background: var(--bg-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.missing-search-box input {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+/* Filter selects */
+.missing-filter select,
+.filter-control select,
+.acc-filters select {
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Page backgrounds */
+.missing-page,
+.details-page,
+.report-missing-page,
+.report-sighting-page,
+.db-page,
+.inst-dash-page,
+.inst-reg-page {
+  background: var(--bg-primary) !important;
+}
+
+/* =========================================================
+   1. SAFE CONTENT MARGINS
+   ========================================================= */
+
+.missing-page,
+.details-page,
+.report-missing-page,
+.report-sighting-page,
+.inst-dash-page,
+.inst-reg-page,
+.landing-page {
+  overflow-x: hidden;
+}
+
+.missing-content {
+  width: min(1400px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 38px 0 60px;
+}
+
+.missing-footer {
+  width: min(1400px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.db-body {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 36px 0 60px;
+}
+
+/* =========================================================
+   2. MOBILE — responsive overhaul
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* ---- Landing hero ---- */
+  .hero {
+    min-height: 100svh;
+    height: auto;
+    max-height: none;
+  }
+
+  .hero-video {
+    display: none;
+  }
+
+  .hero-video-container {
+    background: linear-gradient(145deg, #082f2c, #0f5a52);
+  }
+
+  .hero-navbar {
+    width: calc(100% - 32px);
+    padding: 16px 0;
+  }
+
+  .hero-content {
+    width: calc(100% - 40px) !important;
+    padding-top: 100px !important;
+    padding-bottom: 50px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(34px, 9vw, 54px) !important;
+    letter-spacing: -1.5px !important;
+    max-width: 100% !important;
+    line-height: 1.08 !important;
+  }
+
+  .hero-description {
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+    max-width: 100% !important;
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .hero-primary-btn,
+  .hero-secondary-btn {
+    min-height: 46px;
+    padding: 0 18px;
+    font-size: 13px;
+  }
+
+  /* ---- Navbar ---- */
+  .site-navbar__inner {
+    width: calc(100% - 32px);
+    padding: 14px 0;
+  }
+
+  /* ---- Section padding ---- */
+  .intro-section,
+  .process-section,
+  .final-cta,
+  .footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .intro-section { padding-top: 60px; padding-bottom: 60px; }
+  .process-section { padding-top: 60px; padding-bottom: 60px; }
+
+  /* ---- Page header ---- */
+  .page-header {
+    padding: 32px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .page-header__action { width: 100%; }
+
+  /* ---- Missing persons ---- */
+  .missing-header {
+    padding: 32px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .missing-statistics { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .missing-filter-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .missing-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  .missing-report-button {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* ---- Details page ---- */
+  .details-header {
+    padding: 32px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details-content { padding: 20px; }
+  .information-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* ---- Forms ---- */
+  .report-missing-container,
+  .report-sighting-container { padding: 20px 16px 40px; }
+
+  .report-missing-form,
+  .report-sighting-form { padding: 24px 16px; }
+
+  .form-grid { grid-template-columns: 1fr !important; }
+
+  .form-actions,
+  .sighting-actions { flex-direction: column; gap: 10px; }
+
+  .cancel-button,
+  .submit-report-button,
+  .sighting-cancel-button,
+  .sighting-submit-button { width: 100%; box-sizing: border-box; }
+
+  /* ---- Dashboard ---- */
+  .db-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 20px;
+  }
+
+  .db-topbar-right { width: 100%; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .db-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .db-actions { grid-template-columns: 1fr; gap: 10px; }
+  .db-lower { grid-template-columns: 1fr; gap: 16px; }
+  .db-welcome { font-size: clamp(24px, 7vw, 34px); }
+  .db-cta-btn { width: 100%; justify-content: center; box-sizing: border-box; }
+
+  /* ---- Login / Register ---- */
+  .login-visual, .register-visual { display: none; }
+  .login-form-side, .register-form-side { padding: 32px 20px 40px; min-height: 100svh; }
+  .login-heading h2, .register-heading h2 { font-size: 32px; }
+
+  /* ---- Admin shell ---- */
+  .admin-shell__sidebar {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: auto;
+    width: 100%; height: auto;
+    flex-direction: row;
+    padding: 10px 12px;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    z-index: 100;
+  }
+
+  .admin-shell__brand,
+  .admin-shell__divider,
+  .admin-shell__nav-label,
+  .admin-shell__profile,
+  .admin-shell__spacer { display: none !important; }
+
+  .admin-shell__nav { flex-direction: row; padding: 0; gap: 4px; overflow-x: auto; width: 100%; }
+  .admin-shell__nav-item { white-space: nowrap; font-size: 11px; padding: 7px 10px; }
+  .admin-shell__main { margin-left: 0 !important; margin-top: 56px; }
+  .admin-shell__body { padding: 16px 14px 32px; }
+  .admin-shell__header { padding: 10px 14px; }
+
+  /* ---- Institution pages ---- */
+  .inst-reg-container { grid-template-columns: 1fr !important; }
+  .inst-reg-hero { padding: 28px 20px; }
+  .inst-reg-form-card { padding: 28px 20px; }
+  .inst-form-grid { grid-template-columns: 1fr !important; }
+
+  /* ---- Tables ---- */
+  .admin-table-wrapper,
+  .admin-users-table-wrapper,
+  .admin-sightings-table-wrapper,
+  .admin-events-table-wrapper,
+  .ai-table-wrap,
+  .acc-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* ---- Footers ---- */
+  .missing-footer, .db-footer { flex-direction: column; gap: 6px; text-align: center; }
+  .footer-main { grid-template-columns: 1fr 1fr !important; gap: 30px 20px; }
+}
+
+@media (max-width: 420px) {
+  .missing-statistics { grid-template-columns: 1fr; }
+  .db-stats { grid-template-columns: 1fr; }
+  .missing-filter-grid { grid-template-columns: 1fr; }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-primary-btn,
+  .hero-secondary-btn { width: 100%; justify-content: center; }
+
+  .admin-shell__nav-item { font-size: 10px; padding: 6px 8px; }
+  .footer-main { grid-template-columns: 1fr !important; }
+}
+
+
+.missing-page,
+.details-page,
+.report-missing-page,
+.report-sighting-page,
+.inst-dash-page,
+.inst-reg-page,
+.landing-page {
+  overflow-x: hidden;
+}
+
+.missing-content {
+  width: min(1400px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 38px 0 60px;
+}
+
+.missing-footer {
+  width: min(1400px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.db-body {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 36px 0 60px;
+}
+
+/* =========================================================
+   2. MOBILE — responsive overhaul
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* ---- Landing hero ---- */
+  .hero {
+    min-height: 100svh;
+    height: auto;
+    max-height: none;
+  }
+
+  /* Hide video on mobile — too heavy, use gradient fallback */
+  .hero-video {
+    display: none;
+  }
+
+  .hero-video-container {
+    background: linear-gradient(145deg, #082f2c, #0f5a52);
+  }
+
+  .hero-navbar {
+    width: calc(100% - 32px);
+    padding: 16px 0;
+  }
+
+  .hero-content {
+    width: calc(100% - 40px) !important;
+    padding-top: 100px !important;
+    padding-bottom: 50px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(34px, 9vw, 54px) !important;
+    letter-spacing: -1.5px !important;
+    max-width: 100% !important;
+    line-height: 1.08 !important;
+  }
+
+  .hero-description {
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+    max-width: 100% !important;
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .hero-primary-btn,
+  .hero-secondary-btn {
+    min-height: 46px;
+    padding: 0 18px;
+    font-size: 13px;
+  }
+
+  /* ---- Navbar ---- */
+  .site-navbar__inner {
+    width: calc(100% - 32px);
+    padding: 14px 0;
+  }
+
+  /* ---- Section padding ---- */
+  .intro-section,
+  .process-section,
+  .final-cta,
+  .footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .intro-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .process-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  /* ---- Page header ---- */
+  .page-header {
+    padding: 32px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .page-header__action {
+    width: 100%;
+  }
+
+  /* ---- Missing persons ---- */
+  .missing-header {
+    padding: 32px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .missing-statistics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .missing-filter-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .missing-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .missing-report-button {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* ---- Details page ---- */
+  .details-header {
+    padding: 32px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details-content {
+    padding: 20px;
+  }
+
+  .information-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* ---- Forms ---- */
+  .report-missing-container,
+  .report-sighting-container {
+    padding: 20px 16px 40px;
+  }
+
+  .report-missing-form,
+  .report-sighting-form {
+    padding: 24px 16px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .form-actions,
+  .sighting-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cancel-button,
+  .submit-report-button,
+  .sighting-cancel-button,
+  .sighting-submit-button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* ---- Dashboard ---- */
+  .db-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 20px;
+  }
+
+  .db-topbar-right {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .db-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .db-actions {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .db-lower {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .db-welcome {
+    font-size: clamp(24px, 7vw, 34px);
+  }
+
+  .db-cta-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* ---- Login / Register ---- */
+  .login-visual,
+  .register-visual {
+    display: none;
+  }
+
+  .login-form-side,
+  .register-form-side {
+    padding: 32px 20px 40px;
+    min-height: 100svh;
+  }
+
+  .login-heading h2,
+  .register-heading h2 {
+    font-size: 32px;
+  }
+
+  /* ---- Admin shell ---- */
+  .admin-shell__sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    padding: 10px 12px;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    z-index: 100;
+  }
+
+  .admin-shell__brand,
+  .admin-shell__divider,
+  .admin-shell__nav-label,
+  .admin-shell__profile,
+  .admin-shell__spacer {
+    display: none !important;
+  }
+
+  .admin-shell__nav {
+    flex-direction: row;
+    padding: 0;
+    gap: 4px;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .admin-shell__nav-item {
+    white-space: nowrap;
+    font-size: 11px;
+    padding: 7px 10px;
+  }
+
+  .admin-shell__main {
+    margin-left: 0 !important;
+    margin-top: 56px;
+  }
+
+  .admin-shell__body {
+    padding: 16px 14px 32px;
+  }
+
+  .admin-shell__header {
+    padding: 10px 14px;
+  }
+
+  /* ---- Institution pages ---- */
+  .inst-reg-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .inst-reg-hero {
+    padding: 28px 20px;
+  }
+
+  .inst-reg-form-card {
+    padding: 28px 20px;
+  }
+
+  .inst-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ---- Tables — horizontal scroll ---- */
+  .admin-table-wrapper,
+  .admin-users-table-wrapper,
+  .admin-sightings-table-wrapper,
+  .admin-events-table-wrapper,
+  .ai-table-wrap,
+  .acc-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ---- Footer ---- */
+  .missing-footer,
+  .db-footer {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  /* ---- Footer columns ---- */
+  .footer-main {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 30px 20px;
+  }
+}
+
+/* ---- Extra small screens ---- */
+@media (max-width: 420px) {
+
+  .missing-statistics {
+    grid-template-columns: 1fr;
+  }
+
+  .db-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .missing-filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-primary-btn,
+  .hero-secondary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-shell__nav-item {
+    font-size: 10px;
+    padding: 6px 8px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr !important;
+  }
+}

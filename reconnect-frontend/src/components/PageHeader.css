@@ -35,15 +35,26 @@
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.5px;
-  color: #ffffff;
+  /* Always white — isolated rule, does not affect any other heading */
+  color: #ffffff !important;
+}
+
+/* Stays white in dark mode too */
+[data-theme="dark"] .page-header__title {
+  color: #ffffff !important;
 }
 
 .page-header__subtitle {
   margin: 12px 0 0;
-  color: rgba(255, 255, 255, 0.8);
+  /* Always visible on dark header */
+  color: rgba(255, 255, 255, 0.85) !important;
   font-size: 15px;
   line-height: 1.65;
   max-width: 660px;
+}
+
+[data-theme="dark"] .page-header__subtitle {
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
 .page-header__action {

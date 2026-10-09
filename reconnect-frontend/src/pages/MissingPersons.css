@@ -35,6 +35,7 @@
   font-size: 42px;
   line-height: 1.1;
   letter-spacing: -0.8px;
+  color: #ffffff !important;
 }
 
 .missing-header p {
@@ -895,4 +896,10 @@
 [data-theme="dark"] .missing-footer {
   color: #6a8a85;
   border-top-color: #2a3836;
+}
+
+/* ---- Always white regardless of theme ---- */
+.missing-header h1,
+[data-theme="dark"] .missing-header h1 {
+  color: #ffffff !important;
 }

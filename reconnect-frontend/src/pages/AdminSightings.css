@@ -4,8 +4,8 @@
 
 .admin-sightings-page {
   min-height: 100vh;
-  background: #f8f7f4;
-  color: #17201f;
+  background: #111C1A;
+  color: #F4F7F5;
   padding: 40px 5%;
   box-sizing: border-box;
 }
@@ -73,8 +73,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #d7d4cb;
-  background: white;
+  border: 1px solid #2a3836;
+  background: #1B2925;
   color: #0f766e;
   text-decoration: none;
 }
@@ -130,10 +130,10 @@
   align-items: center;
   gap: 17px;
   padding: 20px 22px;
-  background: white;
-  border: 1px solid #e5e2d9;
+  background: #1B2925;
+  border: 1px solid #2a3836;
   border-radius: 13px;
-  box-shadow: 0 4px 18px rgba(11, 90, 84, 0.045);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.2);
   box-sizing: border-box;
 }
 
@@ -160,14 +160,14 @@
 }
 
 .admin-sightings-stat-card:last-child .stat-icon {
-  background: #f8edc9;
-  color: #8a6b00;
+  background: #2e2415;
+  color: #E5C56A;
 }
 
 .stat-label {
   display: block;
   margin-bottom: 5px;
-  color: #737b79;
+  color: #A3B5AE;
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
@@ -176,7 +176,7 @@
 
 .admin-sightings-stat-card strong {
   display: block;
-  color: #0b5a54;
+  color: #F4F7F5;
   font-size: 29px;
   line-height: 1;
 }
@@ -186,11 +186,11 @@
    ============================================================ */
 
 .admin-sightings-panel {
-  background: white;
-  border: 1px solid #e5e2d9;
+  background: #1B2925;
+  border: 1px solid #2a3836;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(11, 90, 84, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* ============================================================
@@ -203,20 +203,23 @@
   align-items: flex-end;
   gap: 25px;
   padding: 24px;
-  border-bottom: 1px solid #eeeae1;
-  background: #fff;
+  border-bottom: 1px solid #2a3836;
+  background: #111C1A;
 }
 
 .admin-sightings-toolbar h2 {
   margin: 0;
-  color: #0b5a54;
+  color: #F4F7F5;
   font-size: 20px;
   letter-spacing: -0.2px;
 }
 
 .admin-sightings-toolbar p {
   margin: 6px 0 0;
-  color: #7b8381;
+  color: #A3B5AE;
+  font-size: 13px;
+  line-height: 1.5;
+}
   font-size: 13px;
   line-height: 1.5;
 }
@@ -242,27 +245,24 @@
   height: 43px;
   padding: 0 40px 0 41px;
   box-sizing: border-box;
-  border: 1px solid #d8d5cc;
+  border: 1px solid #2a3836;
   border-radius: 8px;
-  background: #fafbf9;
-  color: #17201f;
+  background: #1B2925;
+  color: #F4F7F5;
   font-family: inherit;
   font-size: 13px;
   outline: none;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .admin-sightings-search input:focus {
-  background: white;
-  border-color: #0f766e;
-  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.08);
+  background: #263632;
+  border-color: #73D2B4;
+  box-shadow: 0 0 0 3px rgba(115, 210, 180, 0.08);
 }
 
 .admin-sightings-search input::placeholder {
-  color: #9aa09e;
+  color: #A3B5AE;
 }
 
 .clear-search {
@@ -316,10 +316,10 @@
 
 .admin-sightings-table td {
   padding: 16px 15px;
-  border-bottom: 1px solid #eeeae1;
+  border-bottom: 1px solid #2a3836;
   vertical-align: middle;
   font-size: 13px;
-  color: #3f4947;
+  color: #C1CEC9;
 }
 
 .admin-sightings-table tbody tr {
@@ -327,7 +327,7 @@
 }
 
 .admin-sightings-table tbody tr:hover {
-  background: #fafbf9;
+  background: rgba(115, 210, 180, 0.04);
 }
 
 .admin-sightings-table tbody tr:last-child td {
@@ -359,7 +359,7 @@
 }
 
 .person-cell strong {
-  color: #17201f;
+  color: #F4F7F5;
   font-size: 13px;
   font-weight: 750;
 }
@@ -463,8 +463,8 @@ line-clamp: 2;
 }
 
 .delete-button {
-  background: #eeeae1;
-  color: #505856;
+  background: #263632;
+  color: #C1CEC9;
 }
 
 .delete-button:hover {
@@ -525,7 +525,7 @@ line-clamp: 2;
 }
 
 .error-state {
-  background: #fffaf0;
+  background: #1e2415;
 }
 
 .state-icon {
@@ -536,8 +536,8 @@ line-clamp: 2;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: #f8edc9;
-  color: #806200;
+  background: #2e2415;
+  color: #E5C56A;
   font-size: 24px;
   font-weight: 800;
 }
@@ -605,13 +605,10 @@ line-clamp: 2;
   max-width: 780px;
   max-height: 90vh;
   overflow-y: auto;
-
-  background: #f8f7f4;
+  background: #1B2925;
+  border: 1px solid #2a3836;
   border-radius: 17px;
-
-  box-shadow:
-    0 25px 70px rgba(0, 0, 0, 0.28),
-    0 4px 15px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 25px 70px rgba(0,0,0,0.5), 0 4px 15px rgba(0,0,0,0.3);
 }
 
 /* ============================================================
@@ -683,8 +680,8 @@ line-clamp: 2;
   margin-bottom: 20px;
   padding: 18px 20px;
 
-  background: white;
-  border: 1px solid #e5e2d9;
+  background: #1B2925;
+  border: 1px solid #2a3836;
   border-left: 4px solid #d4a017;
   border-radius: 10px;
 
@@ -730,8 +727,8 @@ line-clamp: 2;
   min-width: 0;
   padding: 15px 16px;
 
-  background: white;
-  border: 1px solid #e5e2d9;
+  background: #1B2925;
+  border: 1px solid #2a3836;
   border-radius: 9px;
 }
 
@@ -762,8 +759,8 @@ line-clamp: 2;
   margin-top: 16px;
   padding: 19px;
 
-  background: white;
-  border: 1px solid #e5e2d9;
+  background: #1B2925;
+  border: 1px solid #2a3836;
   border-radius: 10px;
 }
 
@@ -798,8 +795,8 @@ line-clamp: 2;
 
   padding: 18px 30px;
 
-  border-top: 1px solid #e5e2d9;
-  background: #f3f1eb;
+  border-top: 1px solid #2a3836;
+  background: #111C1A;
 }
 
 .modal-secondary-button,
@@ -819,19 +816,19 @@ line-clamp: 2;
 }
 
 .modal-secondary-button {
-  border: 1px solid #d7d4cb;
-  background: white;
-  color: #505856;
+  border: 1px solid #2a3836;
+  background: #1B2925;
+  color: #C1CEC9;
 }
 
 .modal-secondary-button:hover {
-  background: #eeeae1;
+  background: #263632;
 }
 
 .modal-delete-button {
-  border: 1px solid #d4cec1;
-  background: #eeeae1;
-  color: #505856;
+  border: 1px solid #2a3836;
+  background: #263632;
+  color: #C1CEC9;
 }
 
 .modal-delete-button:hover {
@@ -854,7 +851,7 @@ line-clamp: 2;
 }
 
 .sighting-modal::-webkit-scrollbar-track {
-  background: #eeeae1;
+  background: #263632;
 }
 
 .sighting-modal::-webkit-scrollbar-thumb {
